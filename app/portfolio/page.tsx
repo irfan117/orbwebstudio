@@ -57,7 +57,7 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div className="pt-20">
+    <div>
       <Section 
         title="Our Portfolio" 
         subtitle="Setiap proyek kami mencerminkan dedikasi, kreativitas, dan kualitas. Lihat hasil kerja kami di berbagai bidang dan industri."

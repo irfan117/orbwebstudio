@@ -85,7 +85,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="pt-20">
+    <div>
       <Section 
         title="Get In Touch"
         subtitle="Kami siap mendengar ide Anda. Hubungi kami dan mari mulai percakapan untuk membangun sesuatu yang luar biasa."

@@ -66,7 +66,7 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Services Grid */}
       <Section 
         title="Our Services" 

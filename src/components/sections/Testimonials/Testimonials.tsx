@@ -12,6 +12,7 @@ export default function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -28,11 +29,24 @@ export default function Testimonials() {
     fetchTestimonials();
   }, []);
 
+  // Auto-play carousel
+  useEffect(() => {
+    if (!isAutoPlaying || testimonials.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, testimonials.length]);
+
   const nextTestimonial = () => {
+    setIsAutoPlaying(false);
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
 
   const prevTestimonial = () => {
+    setIsAutoPlaying(false);
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
@@ -67,50 +81,58 @@ export default function Testimonials() {
   }
 
   return (
-    <Section 
-      title="What Our Clients Say" 
+    <Section
+      title="Apa Kata Klien Kami"
       subtitle="Apa kata mereka tentang bekerja bersama kami — kepercayaan dan kepuasan klien adalah prioritas utama."
       background="blue"
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Testimonial Carousel */}
-        <div className="relative">
-          <TestimonialCard testimonial={testimonials[currentIndex]} />
-          
-          {/* Navigation */}
+        <div className="relative px-4 md:px-16">
+          <div className="transition-all duration-500 ease-in-out">
+            <TestimonialCard testimonial={testimonials[currentIndex]} />
+          </div>
+
+          {/* Navigation Buttons */}
           {testimonials.length > 1 && (
             <>
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg"
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 glass shadow-xl hover:shadow-2xl transition-all duration-300 border-2 hover:scale-110 w-12 h-12"
                 onClick={prevTestimonial}
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-5 h-5" />
               </Button>
-              
+
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg"
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 glass shadow-xl hover:shadow-2xl transition-all duration-300 border-2 hover:scale-110 w-12 h-12"
                 onClick={nextTestimonial}
               >
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-5 h-5" />
               </Button>
             </>
           )}
         </div>
-        
+
         {/* Dots Indicator */}
         {testimonials.length > 1 && (
-          <div className="flex justify-center space-x-2 mt-8">
+          <div className="flex justify-center items-center space-x-3 mt-10">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
+                className={`rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'w-8 h-3 bg-gradient-to-r from-slate-600 to-slate-800' 
+                    : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
                 }`}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => {
+                  setIsAutoPlaying(false);
+                  setCurrentIndex(index);
+                }}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>

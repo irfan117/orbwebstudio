@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 export interface SectionProps {
-  title?: string;
+  title?: string | React.ReactNode;
   subtitle?: string;
   children: React.ReactNode;
   background?: 'white' | 'gray' | 'blue' | 'gradient';
@@ -20,30 +20,50 @@ const Section: React.FC<SectionProps> = ({
 }) => {
   const backgroundClasses = {
     white: 'bg-white',
-    gray: 'bg-gray-50',
-    blue: 'bg-blue-50',
-    gradient: 'bg-gradient-to-br from-blue-50 to-purple-50',
+    gray: 'gradient-bg-1',
+    blue: 'gradient-bg-3',
+    gradient: 'bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600',
+  };
+
+  const textColorClasses = {
+    white: 'text-gray-900',
+    gray: 'text-gray-900',
+    blue: 'text-gray-900',
+    gradient: 'text-white',
+  };
+
+  const subtitleColorClasses = {
+    white: 'text-gray-600',
+    gray: 'text-gray-600',
+    blue: 'text-gray-600',
+    gradient: 'text-white/90',
   };
 
   return (
     <section
       className={cn(
-        'py-16 lg:py-24',
+        'py-20 lg:py-28 relative overflow-hidden',
         backgroundClasses[background],
         className
       )}
     >
       {container && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {(title || subtitle) && (
-            <div className="text-center mb-12">
+            <div className="text-center mb-16 space-y-4">
               {title && (
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className={cn(
+                  'heading-md',
+                  textColorClasses[background]
+                )}>
                   {title}
                 </h2>
               )}
               {subtitle && (
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className={cn(
+                  'body-lg max-w-3xl mx-auto',
+                  subtitleColorClasses[background]
+                )}>
                   {subtitle}
                 </p>
               )}

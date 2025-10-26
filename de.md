@@ -12,18 +12,6 @@
 - ✅ Indexes untuk optimasi query
 - ✅ Trigger untuk auto-update `updated_at`
 
-### Library & Configuration
-- ✅ Supabase client (browser)
-- ✅ Supabase server client
-- ✅ Database queries (CRUD functions)
-- ✅ Authentication hook (`useAuth`)
-- ✅ Validation schemas (Zod)
-- ✅ Helper utilities
-- ✅ Middleware untuk protect admin routes
-- ✅ TypeScript types
-- ✅ Path aliases di `tsconfig.json`
-
----
 
 ## 📋 Roadmap Kelanjutan Development
 
