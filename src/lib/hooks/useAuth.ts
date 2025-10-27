@@ -5,6 +5,7 @@
  *
  * @description Custom hook for managing authentication state
  * Provides user session, loading state, and auth actions
+ * Any authenticated user in Supabase Auth is considered admin
  *
  * @returns {Object} Auth state and methods
  * @returns {User | null} user - Current authenticated user
@@ -22,7 +23,7 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import type { User } from '@/types';
+import type { User } from '@supabase/supabase-js';
 
 interface AuthState {
   user: User | null;
@@ -36,22 +37,22 @@ export function useAuth() {
   });
 
   useEffect(() => {
+    // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setAuthState({
-        user: session?.user as User | null,
+        user: session?.user || null,
         loading: false,
       });
     });
 
+    // Listen for auth changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      (async () => {
-        setAuthState({
-          user: session?.user as User | null,
-          loading: false,
-        });
-      })();
+      setAuthState({
+        user: session?.user || null,
+        loading: false,
+      });
     });
 
     return () => subscription.unsubscribe();

@@ -89,12 +89,13 @@ export default function ContactPage() {
       <Section 
         title="Get In Touch"
         subtitle="Kami siap mendengar ide Anda. Hubungi kami dan mari mulai percakapan untuk membangun sesuatu yang luar biasa."
+        background="dark"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Contact Form */}
-          <Card title="Send us a message" className="p-8">
+          <Card title="Send us a message" className="glass-card-tech p-6 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <Input
                   label="Full Name"
                   name="name"
@@ -123,7 +124,7 @@ export default function ContactPage() {
               />
               
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
+                <label className="text-sm font-medium text-white">
                   Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -132,7 +133,7 @@ export default function ContactPage() {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-[#1C1C1E]/50 border border-[#3FA9F5]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FA9F5] focus:border-transparent text-white placeholder-[#D1D1D1]"
                   placeholder="Tell us about your project..."
                 />
               </div>
@@ -140,7 +141,7 @@ export default function ContactPage() {
               <Button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full"
+                className="w-full tech-button"
                 size="lg"
               >
                 {isSubmitting ? (
@@ -158,10 +159,10 @@ export default function ContactPage() {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
                 Contact Information
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-[#D1D1D1] leading-relaxed">
                 Kami selalu siap membantu Anda. Jangan ragu untuk menghubungi kami 
                 melalui berbagai channel yang tersedia. Tim kami akan merespons 
                 dalam waktu 24 jam.
@@ -173,17 +174,17 @@ export default function ContactPage() {
                 const Icon = info.icon;
                 return (
                   <div key={index} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6 text-blue-600" />
+                    <div className="w-12 h-12 bg-[#3FA9F5]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-6 h-6 text-[#3FA9F5]" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">
+                      <h4 className="font-semibold text-white mb-1">
                         {info.title}
                       </h4>
-                      <p className="text-gray-900 font-medium mb-1">
+                      <p className="text-white font-medium mb-1">
                         {info.value}
                       </p>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-[#D1D1D1] text-sm">
                         {info.description}
                       </p>
                     </div>
@@ -193,8 +194,8 @@ export default function ContactPage() {
             </div>
 
             {/* Social Media */}
-            <div className="pt-6 border-t border-gray-200">
-              <h4 className="font-semibold text-gray-900 mb-4">
+            <div className="pt-6 border-t border-[#3FA9F5]/20">
+              <h4 className="font-semibold text-white mb-4">
                 Follow Us
               </h4>
               <div className="flex space-x-4">
@@ -202,9 +203,9 @@ export default function ContactPage() {
                   <a
                     key={social}
                     href="#"
-                    className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-100 transition-colors"
+                    className="w-10 h-10 bg-[#3FA9F5]/20 rounded-lg flex items-center justify-center hover:bg-[#3FA9F5]/30 transition-colors"
                   >
-                    <span className="text-sm font-medium text-gray-600">
+                    <span className="text-sm font-medium text-[#3FA9F5]">
                       {social[0]}
                     </span>
                   </a>
@@ -219,13 +220,13 @@ export default function ContactPage() {
       <Section 
         title="Find Us"
         subtitle="Visit our office for a face-to-face discussion"
-        background="gray"
+        background="dark"
       >
         <div className="max-w-4xl mx-auto">
-          <div className="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
-            <div className="text-center text-gray-500">
-              <MapPin className="w-16 h-16 mx-auto mb-4" />
-              <p className="text-lg font-medium">Interactive Map</p>
+          <div className="glass-card-tech rounded-lg h-96 flex items-center justify-center">
+            <div className="text-center text-[#D1D1D1]">
+              <MapPin className="w-16 h-16 mx-auto mb-4 text-[#3FA9F5]" />
+              <p className="text-lg font-medium text-white">Interactive Map</p>
               <p className="text-sm">Google Maps integration would go here</p>
             </div>
           </div>

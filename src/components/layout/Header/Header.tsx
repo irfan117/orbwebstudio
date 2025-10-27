@@ -32,20 +32,14 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'glass-card-tech shadow-lg border-b border-[#3FA9F5]/30'
-          : 'bg-transparent'
+          ? 'glass-card-tech shadow-lg border-b border-[#3FA9F5]/30' // Efek glassmorphism saat scroll dengan border biru transparan
+          : 'bg-transparent' // Background transparan saat di atas
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-3 sm:px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo - Orb Web Studio */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-[#3FA9F5]/30 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative w-11 h-11 glowing-border rounded-lg flex items-center justify-center group-hover:border-[#3FA9F5] transition-all duration-300 bg-[#0A192F]/50">
-                <Zap className="w-6 h-6 text-[#3FA9F5]" />
-              </div>
-            </div>
+          {/* Logo - Orb Web Studio (Left aligned) */}
+          <Link href="/" className="group">
             <div>
               <span className="text-2xl font-semibold text-white" style={{ fontFamily: 'Playfair Display, serif' }}>
                 Orb Web Studio
@@ -64,8 +58,8 @@ export default function Header() {
                   href={item.href}
                   className={`relative px-5 py-2 rounded-lg font-medium transition-all duration-300 underline-glow ${
                     isActive
-                      ? 'text-[#3FA9F5] bg-[#3FA9F5]/10'
-                      : 'text-[#D1D1D1] hover:text-white hover:bg-white/5'
+                      ? 'text-[#3FA9F5] bg-[#3FA9F5]/10' // Teks biru dengan background biru transparan untuk active state
+                      : 'text-[#D1D1D1] hover:text-white hover:bg-white/5' // Teks abu-abu dengan hover effect
                   }`}
                 >
                   {item.name}
@@ -74,18 +68,16 @@ export default function Header() {
             })}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button 
-              asChild 
-              className="group tech-button"
-            >
-              <Link href="/contact" className="flex items-center">
-                Mulai Proyek
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
-          </div>
+          {/* CTA Button (Right aligned) */}
+          <Button 
+            asChild 
+            className="hidden lg:flex group tech-button" // Tombol dengan styling tech modern - hidden di mobile, flex di desktop
+          >
+            <Link href="/contact" className="flex items-center">
+              Mulai Proyek
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
 
           {/* Mobile menu button */}
           <button
@@ -102,8 +94,8 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden">
-            <div className="px-4 pt-4 pb-6 space-y-2 glass-card-tech rounded-xl mx-4 mt-2 shadow-lg border border-[#3FA9F5]/30">
+          <div className="lg:hidden"> {/* Mobile navigation menu - hanya tampil di layar kecil */}
+            <div className="px-4 pt-4 pb-6 space-y-2 glass-card-tech rounded-xl mx-4 mt-2 shadow-lg border border-[#3FA9F5]/30"> {/* Container dengan efek glassmorphism */}
               {navigation.map((item) => {
                 const isActive = pathname === item.href;
                 return (

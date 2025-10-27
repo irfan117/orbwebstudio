@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/common/Input';
-import { Card } from '@/components/common/Card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/lib/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { Palette, Eye, EyeOff, Loader2 } from 'lucide-react';
@@ -63,125 +64,139 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-deep-navy py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Tech Grid Pattern */}
+      <div className="absolute inset-0 tech-grid-pattern opacity-20" />
+      
+      <div className="max-w-lg w-full space-y-8 relative z-10">
         {/* Logo and Header */}
         <div className="text-center">
           <Link href="/" className="flex items-center justify-center space-x-2 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#3FA9F5] to-[#C6A664] rounded-lg flex items-center justify-center">
               <Palette className="w-7 h-7 text-white" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">
-              WebForge
+            <span className="text-2xl font-bold text-white">
+              Orb Web Studio
             </span>
           </Link>
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h2 className="text-3xl font-bold text-white">
             Admin Login
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-[#D1D1D1]">
             Sign in to access the admin panel
           </p>
         </div>
 
         {/* Login Form */}
-        <Card className="p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <Input
-              label="Email Address"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              placeholder="admin@webforge.com"
-              disabled={isLoading}
-            />
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Password <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  value={formData.password}
+        <Card className="bg-deep-navy/90 border-[#3FA9F5]/50 backdrop-blur-sm">
+          <CardHeader className="border-b border-[#3FA9F5]/30">
+            <CardTitle className="text-white text-center">Welcome Back</CardTitle>
+            <CardDescription className="text-[#D1D1D1] text-center">
+              Enter your credentials to access the admin panel
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="bg-[#1C1C1E]/30">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-white">Email Address</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
                   onChange={handleInputChange}
                   required
-                  placeholder="Enter your password"
+                  placeholder="admin@orbwebstudio.com"
                   disabled={isLoading}
-                  className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="bg-[#2A2A2E] border-[#3FA9F5]/50 text-white placeholder-[#B0B0B0] focus:border-[#3FA9F5] focus:ring-[#3FA9F5]/30"
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  disabled={isLoading}
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4 text-gray-400" />
-                  ) : (
-                    <Eye className="h-4 w-4 text-gray-400" />
-                  )}
-                </button>
               </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="password" className="text-white">Password</Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    name="password"
+                    type={showPassword ? 'text' : 'password'}
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Enter your password"
+                    disabled={isLoading}
+                    className="bg-[#2A2A2E] border-[#3FA9F5]/50 text-white placeholder-[#B0B0B0] focus:border-[#3FA9F5] focus:ring-[#3FA9F5]/30 pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    disabled={isLoading}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4 text-[#D1D1D1]" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-[#D1D1D1]" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <input
+                    id="remember-me"
+                    name="rememberMe"
+                    type="checkbox"
+                    checked={formData.rememberMe}
+                    onChange={handleInputChange}
+                    disabled={isLoading}
+                    className="h-4 w-4 text-[#3FA9F5] focus:ring-[#3FA9F5] border-[#3FA9F5]/50 rounded bg-[#2A2A2E]"
+                  />
+                  <Label htmlFor="remember-me" className="text-sm text-[#D1D1D1]">
+                    Remember me
+                  </Label>
+                </div>
+
+                <div className="text-sm">
+                  <a href="#" className="font-medium text-[#3FA9F5] hover:text-[#5BB8FF]">
+                    Forgot password?
+                  </a>
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full tech-button"
+                size="lg"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Signing in...
+                  </>
+                ) : (
+                  'Sign in'
+                )}
+              </Button>
+            </form>
+
+            <div className="mt-6 text-center">
+              <p className="text-sm text-[#D1D1D1]">
+                Don't have an account?{' '}
+                <Link href="/contact" className="font-medium text-[#3FA9F5] hover:text-[#5BB8FF]">
+                  Contact us
+                </Link>
+              </p>
             </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="rememberMe"
-                  type="checkbox"
-                  checked={formData.rememberMe}
-                  onChange={handleInputChange}
-                  disabled={isLoading}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
-                  Remember me
-                </label>
-              </div>
-
-              <div className="text-sm">
-                <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                  Forgot password?
-                </a>
-              </div>
-            </div>
-
-            <Button
-              type="submit"
-              disabled={isLoading}
-              className="w-full"
-              size="lg"
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Signing in...
-                </>
-              ) : (
-                'Sign in'
-              )}
-            </Button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
-              <Link href="/contact" className="font-medium text-blue-600 hover:text-blue-500">
-                Contact us
-              </Link>
-            </p>
-          </div>
+          </CardContent>
         </Card>
 
         {/* Back to Home */}
         <div className="text-center">
           <Link 
             href="/" 
-            className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-sm text-[#D1D1D1] hover:text-white transition-colors"
           >
             ← Back to Homepage
           </Link>

@@ -16,6 +16,7 @@ import type {
   Testimonial,
   ContactMessage,
   DashboardStats,
+  ProjectType,
 } from '@/types';
 
 export const serviceQueries = {
@@ -81,11 +82,77 @@ export const serviceQueries = {
   },
 };
 
+export const projectTypeQueries = {
+  async getAll() {
+    const { data, error } = await supabase
+      .from('project_types')
+      .select('*')
+      .order('sort_order', { ascending: true });
+
+    if (error) throw error;
+    return data as ProjectType[];
+  },
+
+  async getActive() {
+    const { data, error } = await supabase
+      .from('project_types')
+      .select('*')
+      .eq('is_active', true)
+      .order('sort_order', { ascending: true });
+
+    if (error) throw error;
+    return data as ProjectType[];
+  },
+
+  async getById(id: string) {
+    const { data, error } = await supabase
+      .from('project_types')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (error) throw error;
+    return data as ProjectType | null;
+  },
+
+  async create(projectType: Omit<ProjectType, 'id' | 'created_at' | 'updated_at'>) {
+    const { data, error } = await supabase
+      .from('project_types')
+      .insert([projectType])
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data as ProjectType;
+  },
+
+  async update(id: string, projectType: Partial<ProjectType>) {
+    const { data, error } = await supabase
+      .from('project_types')
+      .update(projectType)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data as ProjectType;
+  },
+
+  async delete(id: string) {
+    const { error } = await supabase.from('project_types').delete().eq('id', id);
+
+    if (error) throw error;
+  },
+};
+
 export const portfolioQueries = {
   async getAll() {
     const { data, error } = await supabase
       .from('portfolios')
-      .select('*')
+      .select(`
+        *,
+        project_type:project_types(*)
+      `)
       .order('created_at', { ascending: false });
 
     if (error) throw error;
@@ -95,7 +162,10 @@ export const portfolioQueries = {
   async getFeatured() {
     const { data, error } = await supabase
       .from('portfolios')
-      .select('*')
+      .select(`
+        *,
+        project_type:project_types(*)
+      `)
       .eq('is_featured', true)
       .order('created_at', { ascending: false })
       .limit(6);
@@ -107,8 +177,25 @@ export const portfolioQueries = {
   async getByCategory(category: string) {
     const { data, error } = await supabase
       .from('portfolios')
-      .select('*')
+      .select(`
+        *,
+        project_type:project_types(*)
+      `)
       .eq('category', category)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return data as Portfolio[];
+  },
+
+  async getByProjectType(projectTypeId: string) {
+    const { data, error } = await supabase
+      .from('portfolios')
+      .select(`
+        *,
+        project_type:project_types(*)
+      `)
+      .eq('project_type_id', projectTypeId)
       .order('created_at', { ascending: false });
 
     if (error) throw error;

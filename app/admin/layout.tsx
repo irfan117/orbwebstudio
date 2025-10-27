@@ -36,9 +36,11 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-deep-navy relative overflow-hidden">
+      {/* Tech Grid Pattern */}
+      <div className="absolute inset-0 tech-grid-pattern opacity-10" />
       <Sidebar />
-      <main className="lg:ml-64 pt-20">
+      <main className="lg:ml-64 pt-20 relative z-10">
         <div className="p-6">
           {children}
         </div>

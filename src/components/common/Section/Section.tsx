@@ -5,7 +5,7 @@ export interface SectionProps {
   title?: string | React.ReactNode;
   subtitle?: string;
   children: React.ReactNode;
-  background?: 'white' | 'gray' | 'blue' | 'gradient';
+  background?: 'white' | 'gray' | 'blue' | 'gradient' | 'dark';
   className?: string;
   container?: boolean;
 }
@@ -20,9 +20,10 @@ const Section: React.FC<SectionProps> = ({
 }) => {
   const backgroundClasses = {
     white: 'bg-white',
-    gray: 'gradient-bg-1',
-    blue: 'gradient-bg-3',
+    gray: 'bg-gray-50',
+    blue: 'bg-gradient-to-br from-blue-50 to-indigo-100',
     gradient: 'bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600',
+    dark: 'bg-deep-navy relative overflow-hidden', // Tema gelap konsisten
   };
 
   const textColorClasses = {
@@ -30,6 +31,7 @@ const Section: React.FC<SectionProps> = ({
     gray: 'text-gray-900',
     blue: 'text-gray-900',
     gradient: 'text-white',
+    dark: 'text-white', // Teks putih untuk tema gelap
   };
 
   const subtitleColorClasses = {
@@ -37,20 +39,26 @@ const Section: React.FC<SectionProps> = ({
     gray: 'text-gray-600',
     blue: 'text-gray-600',
     gradient: 'text-white/90',
+    dark: 'text-[#D1D1D1]', // Abu-abu terang untuk tema gelap
   };
 
   return (
     <section
       className={cn(
-        'py-20 lg:py-28 relative overflow-hidden',
+        'section-tech relative overflow-hidden',
         backgroundClasses[background],
         className
       )}
     >
+      {/* Tech Grid Pattern untuk tema gelap */}
+      {background === 'dark' && (
+        <div className="absolute inset-0 tech-grid-pattern opacity-20" />
+      )}
+      
       {container && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="container-wide relative z-10">
           {(title || subtitle) && (
-            <div className="text-center mb-16 space-y-4">
+            <div className="text-center mb-12 sm:mb-16 space-y-3 sm:space-y-4">
               {title && (
                 <h2 className={cn(
                   'heading-md',
@@ -61,7 +69,7 @@ const Section: React.FC<SectionProps> = ({
               )}
               {subtitle && (
                 <p className={cn(
-                  'body-lg max-w-3xl mx-auto',
+                  'body-lg max-w-4xl mx-auto',
                   subtitleColorClasses[background]
                 )}>
                   {subtitle}

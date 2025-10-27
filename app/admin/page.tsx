@@ -142,11 +142,39 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <div className="h-8 w-64 bg-[#1C1C1E]/50 rounded animate-pulse mb-2" />
+            <div className="h-4 w-96 bg-[#1C1C1E]/50 rounded animate-pulse" />
+          </div>
+        </div>
+
+        {/* Stats Cards Skeleton */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="animate-pulse">
-              <div className="bg-gray-200 rounded-lg h-32" />
+            <div key={i} className="glass-card-tech p-6 animate-pulse">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="h-4 w-24 bg-[#1C1C1E]/50 rounded mb-2" />
+                  <div className="h-8 w-16 bg-[#1C1C1E]/50 rounded" />
+                </div>
+                <div className="h-12 w-12 bg-[#1C1C1E]/50 rounded-lg" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Content Skeleton */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="glass-card-tech p-6 animate-pulse">
+              <div className="h-6 w-48 bg-[#1C1C1E]/50 rounded mb-4" />
+              <div className="space-y-4">
+                <div className="h-20 bg-[#1C1C1E]/50 rounded" />
+                <div className="h-20 bg-[#1C1C1E]/50 rounded" />
+              </div>
             </div>
           ))}
         </div>
@@ -155,15 +183,15 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600">Welcome back! Here's what's happening with your website.</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-white">Dashboard</h1>
+          <p className="text-[#D1D1D1]">Welcome back! Here's what's happening with your website.</p>
         </div>
         <div className="flex items-center space-x-2">
-          <Badge variant="outline" className="flex items-center">
+          <Badge variant="outline" className="flex items-center border-[#3FA9F5]/30 text-[#3FA9F5]">
             <TrendingUp className="w-4 h-4 mr-1" />
             All systems operational
           </Badge>
@@ -171,19 +199,19 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {statsCards.map((stat, index) => {
           const Icon = stat.icon;
           return (
             <Link key={index} href={stat.href}>
-              <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+              <Card className="glass-card-tech p-4 sm:p-6 hover:border-[#3FA9F5]/60 transition-all duration-300 cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                    <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                    <p className="text-xs sm:text-sm font-medium text-[#D1D1D1]">{stat.title}</p>
+                    <p className="text-xl sm:text-2xl font-bold text-white">{stat.value}</p>
                   </div>
-                  <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
-                    <Icon className={`w-6 h-6 ${stat.color}`} />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#3FA9F5]/20 rounded-lg flex items-center justify-center">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#3FA9F5]" />
                   </div>
                 </div>
               </Card>
@@ -192,44 +220,44 @@ export default function AdminDashboard() {
         })}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Recent Messages */}
-        <Card title="Recent Messages" className="p-6">
+        <Card title="Recent Messages" className="glass-card-tech p-4 sm:p-6">
           <div className="space-y-4">
             {recentMessages.map((message) => (
               <div
                 key={message.id}
-                className={`p-4 rounded-lg border ${
-                  message.isRead ? 'bg-gray-50' : 'bg-blue-50 border-blue-200'
+                className={`p-3 sm:p-4 rounded-lg border ${
+                  message.isRead ? 'bg-[#1C1C1E]/50 border-[#3FA9F5]/20' : 'bg-[#3FA9F5]/10 border-[#3FA9F5]/40'
                 }`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2">
-                      <p className="text-sm font-medium text-gray-900 truncate">
+                      <p className="text-sm font-medium text-white truncate">
                         {message.name}
                       </p>
                       {!message.isRead && (
-                        <Badge variant="destructive" className="text-xs">
+                        <Badge variant="destructive" className="text-xs bg-[#3FA9F5] text-white">
                           New
                         </Badge>
                       )}
                     </div>
-                    <p className="text-sm text-gray-600 truncate">
+                    <p className="text-sm text-[#D1D1D1] truncate">
                       {message.email}
                     </p>
-                    <p className="text-sm text-gray-700 mt-1">
+                    <p className="text-sm text-[#D1D1D1] mt-1">
                       {message.message}
                     </p>
                   </div>
-                  <span className="text-xs text-gray-500 ml-2">
+                  <span className="text-xs text-[#3FA9F5]/70 ml-2">
                     {message.date}
                   </span>
                 </div>
               </div>
             ))}
             <div className="pt-4">
-              <Button asChild variant="outline" className="w-full">
+              <Button asChild variant="outline" className="w-full border-[#3FA9F5]/30 text-[#3FA9F5] hover:bg-[#3FA9F5]/10">
                 <Link href="/admin/messages">View All Messages</Link>
               </Button>
             </div>
@@ -237,22 +265,22 @@ export default function AdminDashboard() {
         </Card>
 
         {/* Quick Actions */}
-        <Card title="Quick Actions" className="p-6">
+        <Card title="Quick Actions" className="glass-card-tech p-4 sm:p-6">
           <div className="space-y-4">
             {quickActions.map((action, index) => {
               const Icon = action.icon;
               return (
                 <Link key={index} href={action.href}>
-                  <div className={`p-4 rounded-lg border ${action.bgColor} hover:shadow-md transition-shadow cursor-pointer`}>
+                  <div className="p-3 sm:p-4 rounded-lg border border-[#3FA9F5]/20 bg-[#3FA9F5]/5 hover:bg-[#3FA9F5]/10 hover:border-[#3FA9F5]/40 transition-all duration-300 cursor-pointer">
                     <div className="flex items-center space-x-3">
-                      <div className={`w-10 h-10 ${action.bgColor} rounded-lg flex items-center justify-center`}>
-                        <Icon className={`w-5 h-5 ${action.color}`} />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#3FA9F5]/20 rounded-lg flex items-center justify-center">
+                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#3FA9F5]" />
                       </div>
                       <div>
-                        <h3 className="text-sm font-medium text-gray-900">
+                        <h3 className="text-sm font-medium text-white">
                           {action.title}
                         </h3>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-[#D1D1D1]">
                           {action.description}
                         </p>
                       </div>
@@ -266,41 +294,41 @@ export default function AdminDashboard() {
       </div>
 
       {/* Recent Activity */}
-      <Card title="Recent Activity" className="p-6">
+      <Card title="Recent Activity" className="glass-card-tech p-4 sm:p-6">
         <div className="space-y-4">
-          <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-              <Plus className="w-4 h-4 text-green-600" />
+          <div className="flex items-center space-x-3 p-3 bg-[#1C1C1E]/50 rounded-lg">
+            <div className="w-8 h-8 bg-[#3FA9F5]/20 rounded-full flex items-center justify-center">
+              <Plus className="w-4 h-4 text-[#3FA9F5]" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-gray-900">
+              <p className="text-sm text-white">
                 New service "E-commerce Development" was added
               </p>
-              <p className="text-xs text-gray-500">2 hours ago</p>
+              <p className="text-xs text-[#3FA9F5]/70">2 hours ago</p>
             </div>
           </div>
           
-          <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-              <Eye className="w-4 h-4 text-blue-600" />
+          <div className="flex items-center space-x-3 p-3 bg-[#1C1C1E]/50 rounded-lg">
+            <div className="w-8 h-8 bg-[#3FA9F5]/20 rounded-full flex items-center justify-center">
+              <Eye className="w-4 h-4 text-[#3FA9F5]" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-gray-900">
+              <p className="text-sm text-white">
                 Portfolio item "Corporate Website" was updated
               </p>
-              <p className="text-xs text-gray-500">4 hours ago</p>
+              <p className="text-xs text-[#3FA9F5]/70">4 hours ago</p>
             </div>
           </div>
           
-          <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-            <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-              <Star className="w-4 h-4 text-yellow-600" />
+          <div className="flex items-center space-x-3 p-3 bg-[#1C1C1E]/50 rounded-lg">
+            <div className="w-8 h-8 bg-[#3FA9F5]/20 rounded-full flex items-center justify-center">
+              <Star className="w-4 h-4 text-[#3FA9F5]" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-gray-900">
+              <p className="text-sm text-white">
                 New testimonial from John Doe was approved
               </p>
-              <p className="text-xs text-gray-500">1 day ago</p>
+              <p className="text-xs text-[#3FA9F5]/70">1 day ago</p>
             </div>
           </div>
         </div>

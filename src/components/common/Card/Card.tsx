@@ -10,12 +10,12 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, title, image, description, footer, hover = true, ...props }, ref) => {
+  ({ className, title, image, description, footer, hover = true, children, ...props }, ref) => {
     return (
       <div
         ref={ref}
         className={cn(
-          'rounded-lg border bg-card text-card-foreground shadow-sm',
+          'rounded-lg border shadow-sm',
           hover && 'hover:shadow-md transition-shadow duration-200',
           className
         )}
@@ -31,25 +31,26 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           </div>
         )}
         
-        <div className="p-6">
-          {title && (
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              {title}
-            </h3>
-          )}
-          
-          {description && (
-            <p className="text-gray-600 text-sm leading-relaxed mb-4">
-              {description}
-            </p>
-          )}
-          
-          {footer && (
-            <div className="mt-4">
-              {footer}
-            </div>
-          )}
-        </div>
+        {/* Render title/description/footer structure if they exist */}
+        {title && (
+          <h3 className="text-lg font-semibold text-white mb-2">
+            {title}
+          </h3>
+        )}
+        
+        {description && (
+          <p className="text-[#D1D1D1] text-sm leading-relaxed mb-4">
+            {description}
+          </p>
+        )}
+        
+        {children}
+        
+        {footer && (
+          <div className="mt-4">
+            {footer}
+          </div>
+        )}
       </div>
     );
   }

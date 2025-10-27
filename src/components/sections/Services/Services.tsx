@@ -46,14 +46,15 @@ export default function Services() {
     <Section
       title={
         <span className="flex items-center justify-center gap-3">
-          <Sparkles className="w-8 h-8 text-amber-600" />
+          <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-[#3FA9F5]" />
           Layanan Kami
         </span>
       }
-      subtitle="Layanan kami dirancang untuk memberikan solusi menyeluruh — mulai dari desain, pengembangan, hingga pemeliharaan."
+      subtitle="Kami membantu bisnis menciptakan pengalaman digital yang powerful dengan teknologi terkini dan desain modern."
+      background="dark"
     >
       {/* Bento Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
+      <div className="grid-responsive auto-rows-fr">
         {services.map((service, index) => (
           <ServiceCard 
             key={service.id} 
@@ -63,15 +64,15 @@ export default function Services() {
         ))}
       </div>
 
-      <div className="text-center mt-16">
+      <div className="text-center mt-12 sm:mt-16">
         <Button 
           asChild 
           size="lg" 
-          className="group bg-gradient-to-r from-slate-700 to-slate-900 hover:from-slate-800 hover:to-black shadow-2xl hover:shadow-slate-500/50 transition-all duration-300 hover:scale-105 text-lg px-8 py-6"
+          className="group tech-button text-lg px-6 sm:px-8 py-4 sm:py-6"
         >
           <Link href="/services" className="flex items-center">
             Lihat Semua Layanan
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </Button>
       </div>

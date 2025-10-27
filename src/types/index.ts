@@ -17,12 +17,26 @@ export interface Service {
   updated_at: string;
 }
 
+export interface ProjectType {
+  id: string;
+  name: string;
+  description: string | null;
+  icon: string | null;
+  color: string;
+  is_active: boolean;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Portfolio {
   id: string;
   title: string;
   description: string | null;
   image_url: string | null;
   category: string | null;
+  project_type_id: string | null;
+  project_type?: ProjectType;
   tech_stack: string[];
   project_url: string | null;
   is_featured: boolean;
