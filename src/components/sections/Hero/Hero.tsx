@@ -7,32 +7,57 @@ import { ArrowRight, Sparkles, TrendingUp, Zap, Code2 } from 'lucide-react';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const [hideBg, setHideBg] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  // Sembunyikan background hero saat footer terlihat
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          setHideBg(entry.isIntersecting);
+        }
+      },
+      { root: null, threshold: 0.01 }
+    );
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  // Background dibuat statis (tanpa parallax)
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden animated-gradient-bg"> {/* Section hero dengan background gradient yang beranimasi */}
-      {/* Tech Grid Pattern - Pola grid sebagai background */}
-      <div className="absolute inset-0 tech-grid-pattern" />
-
-      {/* Dots Pattern Overlay - Pola titik sebagai overlay */}
-      <div className="absolute inset-0 dots-pattern" />
-
-      {/* Cyber Blue Glow Elements - Elemen glow biru sebagai dekorasi */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-[#3FA9F5]/10 rounded-full blur-3xl float-animation" /> {/* Glow biru besar dengan animasi float */}
-        <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-[#3FA9F5]/10 rounded-full blur-3xl float-animation" style={{ animationDelay: '3s' }} /> {/* Glow biru dengan delay */}
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#C6A664]/5 rounded-full blur-3xl float-animation" style={{ animationDelay: '1.5s' }} /> {/* Glow emas kecil */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden"> {/* Section hero transparan, background dipindah ke layer fixed */}
+      {/* Fixed Background Layer - tetap saat scroll, disembunyikan ketika footer masuk viewport */}
+      <div className={`fixed inset-0 -z-10 hero-fixed-bg transition-opacity duration-500 ${hideBg ? 'opacity-0' : 'opacity-100'}`}>
+        <div className="absolute inset-0 hero-static-bg" />
+        {/* Tech Grid Pattern - Pola grid sebagai background */}
+        <div className="absolute inset-0 tech-grid-pattern" />
+        {/* Dots Pattern Overlay - Pola titik sebagai overlay */}
+        <div className="absolute inset-0 dots-pattern" />
+        {/* Bottom blend to footer to avoid any white/polos gap */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-[#1C1C1E]" />
+        {/* Cyber Blue Glow Elements - Elemen glow biru sebagai dekorasi (non-animated) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-[#3FA9F5]/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-[#3FA9F5]/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#C6A664]/5 rounded-full blur-3xl" />
+        </div>
+        {/* Animated Decorative Lines dengan efek aliran cahaya */}
+        <div className="absolute top-0 left-1/4 w-px h-40 bg-gradient-to-b from-transparent via-[#3FA9F5]/40 to-transparent line-flow-y" />
+        <div className="absolute bottom-0 right-1/3 w-px h-48 bg-gradient-to-t from-transparent via-[#3FA9F5]/40 to-transparent line-flow-y" />
+        <div className="absolute top-1/3 right-0 h-px w-32 bg-gradient-to-l from-transparent via-[#3FA9F5]/40 to-transparent line-flow-x" />
+        <div className="absolute top-1/2 left-0 h-px w-24 bg-gradient-to-r from-transparent via-[#3FA9F5]/30 to-transparent line-flow-x" />
       </div>
 
-      {/* Animated Decorative Lines */}
-      <div className="absolute top-0 left-1/4 w-px h-40 bg-gradient-to-b from-transparent via-[#3FA9F5]/40 to-transparent animate-pulse" style={{ animationDuration: '3s' }} />
-      <div className="absolute bottom-0 right-1/3 w-px h-48 bg-gradient-to-t from-transparent via-[#3FA9F5]/40 to-transparent animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }} />
-      <div className="absolute top-1/3 right-0 h-px w-32 bg-gradient-to-l from-transparent via-[#3FA9F5]/40 to-transparent animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }} />
-      <div className="absolute top-1/2 left-0 h-px w-24 bg-gradient-to-r from-transparent via-[#3FA9F5]/30 to-transparent animate-pulse" style={{ animationDuration: '4.5s', animationDelay: '2s' }} />
-      
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
         <div className="text-center">
           {/* Tech Badge - Badge dengan efek glassmorphism */}

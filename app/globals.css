@@ -52,7 +52,8 @@
 
   /* Styling untuk body - background gelap dengan teks putih */
   body {
-    @apply bg-[#0A192F] text-white; /* Background navy gelap, teks putih */
+    @apply text-white; /* Teks putih */
+    background-color: transparent; /* Background transparan agar hero bg terlihat */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; /* Font stack modern */
     font-weight: 400; /* Berat font normal */
     line-height: 1.6; /* Line height untuk readability yang lebih baik */
@@ -235,6 +236,12 @@
     animation: gradientShift 15s ease infinite; /* Animasi selama 15 detik */
   }
 
+  /* Static Gradient Background - versi tanpa animasi untuk hero */
+  .hero-static-bg { /* Background gradient statis */
+    background: linear-gradient(-45deg, #0A192F, #1C1C1E, #0A192F, #1A2332);
+    background-size: 400% 400%;
+  }
+
   @keyframes gradientShift { /* Keyframes untuk animasi gradient */
     0% { background-position: 0% 50%; } /* Posisi awal */
     50% { background-position: 100% 50%; } /* Posisi tengah */
@@ -254,6 +261,56 @@
     height: 1px; /* Tinggi 1px */
     background: linear-gradient(90deg, transparent 0%, #3FA9F5 50%, transparent 100%); /* Gradient horizontal */
     opacity: 0.3; /* Sedikit transparan */
+  }
+
+  /* Fixed Hero Background - berada di bawah konten, tidak menutupi footer (dikendalikan via JS) */
+  .hero-fixed-bg {
+    pointer-events: none; /* Jangan blok interaksi */
+  }
+
+  /* Flowing Light Line - efek garis seperti dialiri cahaya */
+  .line-flow-y { /* Untuk garis vertikal (w-px, h-*) */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .line-flow-y::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -40%;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(63,169,245,0.9) 50%, transparent 100%);
+    filter: drop-shadow(0 0 6px rgba(63,169,245,0.6));
+    animation: lineFlowY 2.2s linear infinite;
+  }
+
+  @keyframes lineFlowY {
+    0% { transform: translateY(0%); opacity: 0.8; }
+    100% { transform: translateY(300%); opacity: 0.8; }
+  }
+
+  .line-flow-x { /* Untuk garis horizontal (h-px, w-*) */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .line-flow-x::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -40%;
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(to right, transparent 0%, rgba(63,169,245,0.9) 50%, transparent 100%);
+    filter: drop-shadow(0 0 6px rgba(63,169,245,0.6));
+    animation: lineFlowX 2.2s linear infinite;
+  }
+
+  @keyframes lineFlowX {
+    0% { transform: translateX(0%); opacity: 0.8; }
+    100% { transform: translateX(300%); opacity: 0.8; }
   }
 
   /* Glowing Border - Border dengan efek glow */

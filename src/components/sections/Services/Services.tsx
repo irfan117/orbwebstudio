@@ -51,7 +51,7 @@ export default function Services() {
         </span>
       }
       subtitle="Kami membantu bisnis menciptakan pengalaman digital yang powerful dengan teknologi terkini dan desain modern."
-      background="dark"
+      background="transparent"
     >
       {/* Bento Grid Layout */}
       <div className="grid-responsive auto-rows-fr">

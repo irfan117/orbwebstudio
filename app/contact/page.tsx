@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Section } from '@/components/common/Section';
 import { Input } from '@/components/common/Input';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/common/Card';
-import { messageQueries } from '@/lib/supabase/queries';
+import { messageQueries, serviceQueries } from '@/lib/supabase/queries';
 import { useToast } from '@/hooks/use-toast';
 import { 
   Mail, 
@@ -17,12 +18,15 @@ import {
 } from 'lucide-react';
 
 export default function ContactPage() {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: ''
   });
+  const [selectedService, setSelectedService] = useState<string>('');
+  const [serviceOptions, setServiceOptions] = useState<Array<{ id: string; title: string }>>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -39,12 +43,16 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      await messageQueries.create(formData);
+      const composedMessage = selectedService
+        ? `Service: ${selectedService}\n\n${formData.message}`
+        : formData.message;
+      await messageQueries.create({ ...formData, message: composedMessage });
       toast({
         title: "Message Sent!",
         description: "Thank you for your message. We'll get back to you soon.",
       });
       setFormData({ name: '', email: '', phone: '', message: '' });
+      setSelectedService('');
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
@@ -56,6 +64,24 @@ export default function ContactPage() {
       setIsSubmitting(false);
     }
   };
+
+  // Load service options and preselect from query param
+  useEffect(() => {
+    const init = async () => {
+      try {
+        const data = await serviceQueries.getActive();
+        const options = (data || []).map((s: any) => ({ id: s.id, title: s.title }));
+        setServiceOptions(options);
+        const fromQuery = searchParams.get('service');
+        if (fromQuery) {
+          setSelectedService(fromQuery);
+        }
+      } catch (e) {
+        // ignore
+      }
+    };
+    init();
+  }, [searchParams]);
 
   const contactInfo = [
     {
@@ -113,6 +139,24 @@ export default function ContactPage() {
                   required
                   placeholder="your@email.com"
                 />
+              </div>
+
+              {/* Service Selection to ease ordering */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-white">Pilih Layanan (opsional)</label>
+                <select
+                  value={selectedService}
+                  onChange={(e) => setSelectedService(e.target.value)}
+                  className="w-full px-3 py-2 bg-[#1C1C1E]/50 border border-[#3FA9F5]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FA9F5] focus:border-transparent text-white"
+                >
+                  <option value="">— Pilih layanan —</option>
+                  {serviceOptions.map((opt) => (
+                    <option key={opt.id} value={opt.title} className="bg-[#0A192F] text-white">
+                      {opt.title}
+                    </option>
+                  ))}
+                </select>
+                <p className="text-xs text-[#D1D1D1]">Admin akan memproses pesanan Anda secara manual setelah kami menerima pesan.</p>
               </div>
               
               <Input

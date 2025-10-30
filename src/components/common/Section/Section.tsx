@@ -5,7 +5,7 @@ export interface SectionProps {
   title?: string | React.ReactNode;
   subtitle?: string;
   children: React.ReactNode;
-  background?: 'white' | 'gray' | 'blue' | 'gradient' | 'dark';
+  background?: 'white' | 'gray' | 'blue' | 'gradient' | 'dark' | 'transparent';
   className?: string;
   container?: boolean;
 }
@@ -24,6 +24,7 @@ const Section: React.FC<SectionProps> = ({
     blue: 'bg-gradient-to-br from-blue-50 to-indigo-100',
     gradient: 'bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600',
     dark: 'bg-deep-navy relative overflow-hidden', // Tema gelap konsisten
+    transparent: 'bg-transparent',
   };
 
   const textColorClasses = {
@@ -32,6 +33,7 @@ const Section: React.FC<SectionProps> = ({
     blue: 'text-gray-900',
     gradient: 'text-white',
     dark: 'text-white', // Teks putih untuk tema gelap
+    transparent: 'text-white',
   };
 
   const subtitleColorClasses = {
@@ -40,6 +42,7 @@ const Section: React.FC<SectionProps> = ({
     blue: 'text-gray-600',
     gradient: 'text-white/90',
     dark: 'text-[#D1D1D1]', // Abu-abu terang untuk tema gelap
+    transparent: 'text-[#D1D1D1]',
   };
 
   return (

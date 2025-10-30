@@ -33,7 +33,7 @@ export default function Portfolio() {
       <Section 
         title="Portfolio Kami" 
         subtitle="Kami percaya hasil berbicara lebih keras dari kata-kata. Berikut beberapa proyek yang kami kembangkan dari nol hingga siap digunakan 👇"
-        background="gray"
+        background="transparent"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[...Array(6)].map((_, i) => (
@@ -55,7 +55,7 @@ export default function Portfolio() {
         </span>
       }
       subtitle="Kami percaya hasil berbicara lebih keras dari kata-kata. Berikut beberapa proyek yang kami kembangkan dari nol hingga siap digunakan 👇"
-      background="dark"
+      background="transparent"
     >
       {/* Portfolio Grid */}
       <div className="grid-responsive mb-12 sm:mb-16">

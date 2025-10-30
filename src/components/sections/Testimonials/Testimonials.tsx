@@ -55,7 +55,7 @@ export default function Testimonials() {
       <Section 
         title="What Our Clients Say" 
         subtitle="Apa kata mereka tentang bekerja bersama kami — kepercayaan dan kepuasan klien adalah prioritas utama."
-        background="dark"
+        background="transparent"
       >
         <div className="max-w-4xl mx-auto">
           <div className="animate-pulse">
@@ -71,7 +71,7 @@ export default function Testimonials() {
       <Section 
         title="What Our Clients Say" 
         subtitle="Apa kata mereka tentang bekerja bersama kami — kepercayaan dan kepuasan klien adalah prioritas utama."
-        background="dark"
+        background="transparent"
       >
         <div className="text-center text-[#D1D1D1]">
           No testimonials available yet.
@@ -91,7 +91,7 @@ export default function Testimonials() {
         </span>
       }
       subtitle="Apa kata mereka tentang bekerja bersama kami — kepercayaan dan kepuasan klien adalah prioritas utama."
-      background="dark"
+      background="transparent"
     >
       <div className="max-w-6xl mx-auto">
         {/* Enhanced Testimonial Carousel */}

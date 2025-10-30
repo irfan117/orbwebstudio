@@ -22,7 +22,7 @@ export default function CTA() {
         </span>
       }
       subtitle="Mari wujudkan ide Anda menjadi karya digital yang berdampak. Konsultasi gratis untuk membahas kebutuhan proyek Anda."
-      background="dark"
+      background="transparent"
     >
       <div className="text-center space-y-6 sm:space-y-8 max-w-6xl mx-auto">
         {/* Enhanced Features Grid */}
