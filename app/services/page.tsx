@@ -73,7 +73,7 @@ export default function ServicesPage() {
   return (
     <div>
       {/* Hero Section with Image */}
-      <section className="section-tech bg-deep-navy relative overflow-hidden">
+      <section className="section-tech bg-deep-navy relative overflow-hidden pt-32 lg:pt-40">
         {/* Tech Grid Pattern */}
         <div className="absolute inset-0 tech-grid-pattern opacity-20" />
 
@@ -91,7 +91,7 @@ export default function ServicesPage() {
                 yang membantu bisnis Anda mencapai kesuksesan di dunia digital.
               </p>
 
-              <div className="grid grid-cols-3 gap-4 sm:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                 <div className="text-center glass-card-tech p-4 rounded-xl">
                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                     10+
@@ -387,8 +387,8 @@ export default function ServicesPage() {
       </Section>
 
       {/* FAQ Section */}
-      <Section 
-        title="Frequently Asked Questions" 
+      <Section
+        title="Frequently Asked Questions"
         subtitle="Pertanyaan yang sering diajukan tentang layanan kami"
         background="dark"
       >

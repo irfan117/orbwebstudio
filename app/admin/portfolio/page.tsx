@@ -13,6 +13,7 @@ import { portfolioQueries, projectTypeQueries, categoryQueries } from '@/lib/sup
 import { Portfolio, ProjectType, Category } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Edit, Trash, Eye, EyeOff, ExternalLink, Github, Loader2, Image as ImageIcon } from 'lucide-react';
+import { ImageUpload } from '@/components/common/ImageUpload';
 
 export default function AdminPortfolioPage() {
   const [portfolios, setPortfolios] = useState<Portfolio[]>([]);
@@ -159,7 +160,7 @@ export default function AdminPortfolioPage() {
               <Plus className="w-4 h-4 mr-2" /> Add New Project
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-deep-navy/95 border-[#3FA9F5]/50 text-white p-6 sm:p-8 max-w-2xl backdrop-blur-sm">
+          <DialogContent className="bg-deep-navy/95 border-[#3FA9F5]/50 text-white p-6 sm:p-8 max-w-2xl backdrop-blur-sm max-h-[85vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle className="text-white">{currentPortfolio?.id ? 'Edit Portfolio Item' : 'Add New Portfolio Item'}</DialogTitle>
             </DialogHeader>
@@ -230,13 +231,11 @@ export default function AdminPortfolioPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="image_url" className="text-white">Image URL</Label>
-                <Input
-                  id="image_url"
+                <Label htmlFor="image_url" className="text-white">Image</Label>
+                <ImageUpload
                   value={currentPortfolio?.image_url || ''}
-                  onChange={(e) => setCurrentPortfolio({ ...currentPortfolio, image_url: e.target.value })}
-                  className="bg-[#2A2A2E] border-[#3FA9F5]/50 text-white placeholder-[#B0B0B0] focus:border-[#3FA9F5] focus:ring-[#3FA9F5]/30"
-                  placeholder="https://example.com/image.jpg"
+                  onChange={(url) => setCurrentPortfolio({ ...currentPortfolio, image_url: url })}
+                  disabled={isSubmitting}
                 />
               </div>
 

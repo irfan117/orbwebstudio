@@ -57,13 +57,12 @@ export default function Hero() {
         <div className="absolute top-1/2 left-0 h-px w-24 bg-gradient-to-r from-transparent via-[#3FA9F5]/30 to-transparent line-flow-x" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 lg:pt-40 lg:pb-32 z-10">
         <div className="text-center">
           {/* Tech Badge - Badge dengan efek glassmorphism */}
           <div
-            className={`inline-flex items-center gap-3 px-6 py-3 rounded-full glass-card-tech mb-10 transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8' // Animasi fade in dari bawah
-            }`}
+            className={`inline-flex items-center gap-3 px-6 py-3 rounded-full glass-card-tech mb-10 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8' // Animasi fade in dari bawah
+              }`}
           >
             <Code2 className="w-5 h-5 text-[#3FA9F5]" />
             <span className="text-sm font-medium text-white tracking-wide">Modern Web Solutions</span>
@@ -71,30 +70,27 @@ export default function Hero() {
 
           {/* Main Headline - Judul utama dengan efek neon line */}
           <h1
-            className={`heading-xl text-white mb-8 neon-line transition-all duration-1000 delay-100 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8' // Animasi fade in dengan delay
-            }`}
+            className={`heading-xl text-white mb-8 neon-line transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8' // Animasi fade in dengan delay
+              }`}
           >
             Transformasi Digital untuk{' '}
             <span className="gradient-text-tech relative inline-block"> {/* Teks dengan gradient biru ke emas */}
               Bisnis Modern
             </span>
           </h1>
-          
+
           {/* Subheadline - High Contrast */}
           <p
-            className={`text-xl md:text-2xl text-[#D1D1D1] max-w-4xl mx-auto mb-12 leading-relaxed transition-all duration-1000 delay-300 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
+            className={`text-xl md:text-2xl text-[#D1D1D1] max-w-4xl mx-auto mb-12 leading-relaxed transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
           >
             <strong className="text-white">Orb Web Studio</strong> membantu bisnis menciptakan pengalaman digital yang powerful dengan teknologi terkini. Dari website hingga web app kompleks, kami wujudkan visi digital Anda.
           </p>
-          
+
           {/* CTA Buttons */}
           <div
-            className={`flex flex-col sm:flex-row items-center justify-center gap-5 mb-20 transition-all duration-1000 delay-500 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
+            className={`flex flex-col sm:flex-row items-center justify-center gap-5 mb-20 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
           >
             <Button
               asChild
@@ -119,10 +115,10 @@ export default function Hero() {
               </Link>
             </Button>
           </div>
-          
+
         </div>
       </div>
-      
+
       {/* Tech Scroll Indicator - Indikator scroll dengan efek glow */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
         <div className="w-6 h-10 glowing-border rounded-full flex justify-center pulse-glow"> {/* Container dengan border glow dan pulse */}

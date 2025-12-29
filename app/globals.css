@@ -2,71 +2,118 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* Import Tailwind CSS - framework utama untuk styling */
-@tailwind base; /* Mengimpor base styles Tailwind */
-@tailwind components; /* Mengimpor component classes */
-@tailwind utilities; /* Mengimpor utility classes */
+@tailwind base;
+/* Mengimpor base styles Tailwind */
+@tailwind components;
+/* Mengimpor component classes */
+@tailwind utilities;
+/* Mengimpor utility classes */
 
 /* Variabel CSS custom untuk warna tema - menggunakan HSL untuk kompatibilitas dengan Tailwind */
 :root {
-  --deep-navy: #0A192F; /* Warna navy gelap untuk background utama */
-  --charcoal: #1C1C1E; /* Warna charcoal untuk background sekunder */
-  --pure-white: #FFFFFF; /* Putih murni */
-  --silver-mist: #D1D1D1; /* Abu-abu terang untuk teks sekunder */
-  --soft-gold: #C6A664; /* Emas lembut untuk aksen */
-  --cyber-blue: #3FA9F5; /* Biru cyber untuk highlight */
+  --deep-navy: #0A192F;
+  /* Warna navy gelap untuk background utama */
+  --charcoal: #1C1C1E;
+  /* Warna charcoal untuk background sekunder */
+  --pure-white: #FFFFFF;
+  /* Putih murni */
+  --silver-mist: #D1D1D1;
+  /* Abu-abu terang untuk teks sekunder */
+  --soft-gold: #C6A664;
+  /* Emas lembut untuk aksen */
+  --cyber-blue: #3FA9F5;
+  /* Biru cyber untuk highlight */
 }
 
 /* Layer base untuk mengatur variabel CSS Tailwind dan styling dasar */
 @layer base {
   :root {
     /* Variabel warna dalam format HSL untuk shadcn/ui components */
-    --background: 0 0% 100%; /* Background utama (putih) */
-    --foreground: 0 0% 3.9%; /* Teks utama (hampir hitam) */
-    --card: 214 100% 15%; /* Background card (dark navy to match theme) */
-    --card-foreground: 0 0% 100%; /* Teks pada card (putih) */
-    --popover: 214 100% 15%; /* Background popover (dark navy) */
-    --popover-foreground: 0 0% 100%; /* Teks popover (putih) */
-    --primary: 203 89% 61%; /* Warna primary (biru) */
-    --primary-foreground: 0 0% 98%; /* Teks pada primary */
-    --secondary: 0 0% 96.1%; /* Warna secondary (abu-abu terang) */
-    --secondary-foreground: 0 0% 9%; /* Teks pada secondary */
-    --muted: 0 0% 96.1%; /* Warna muted (abu-abu) */
-    --muted-foreground: 0 0% 45.1%; /* Teks muted */
-    --accent: 203 89% 61%; /* Warna accent (biru) */
-    --accent-foreground: 0 0% 9%; /* Teks accent */
-    --destructive: 0 84.2% 60.2%; /* Warna untuk error/danger */
-    --destructive-foreground: 0 0% 98%; /* Teks destructive */
-    --border: 0 0% 89.8%; /* Warna border */
-    --input: 0 0% 89.8%; /* Background input */
-    --ring: 203 89% 61%; /* Warna ring/focus */
-    --radius: 0.5rem; /* Border radius default */
+    --background: 0 0% 100%;
+    /* Background utama (putih) */
+    --foreground: 0 0% 3.9%;
+    /* Teks utama (hampir hitam) */
+    --card: 214 100% 15%;
+    /* Background card (dark navy to match theme) */
+    --card-foreground: 0 0% 100%;
+    /* Teks pada card (putih) */
+    --popover: 214 100% 15%;
+    /* Background popover (dark navy) */
+    --popover-foreground: 0 0% 100%;
+    /* Teks popover (putih) */
+    --primary: 203 89% 61%;
+    /* Warna primary (biru) */
+    --primary-foreground: 0 0% 98%;
+    /* Teks pada primary */
+    --secondary: 0 0% 96.1%;
+    /* Warna secondary (abu-abu terang) */
+    --secondary-foreground: 0 0% 9%;
+    /* Teks pada secondary */
+    --muted: 0 0% 96.1%;
+    /* Warna muted (abu-abu) */
+    --muted-foreground: 0 0% 45.1%;
+    /* Teks muted */
+    --accent: 203 89% 61%;
+    /* Warna accent (biru) */
+    --accent-foreground: 0 0% 9%;
+    /* Teks accent */
+    --destructive: 0 84.2% 60.2%;
+    /* Warna untuk error/danger */
+    --destructive-foreground: 0 0% 98%;
+    /* Teks destructive */
+    --border: 0 0% 89.8%;
+    /* Warna border */
+    --input: 0 0% 89.8%;
+    /* Background input */
+    --ring: 203 89% 61%;
+    /* Warna ring/focus */
+    --radius: 0.5rem;
+    /* Border radius default */
   }
 }
 
 /* Layer base untuk styling dasar seluruh aplikasi */
 @layer base {
+
   /* Mengatur border default untuk semua elemen menggunakan Tailwind utility */
   * {
-    @apply border-border; /* Menggunakan class border dari Tailwind */
+    @apply border-border;
+    /* Menggunakan class border dari Tailwind */
   }
 
   /* Styling untuk body - background gelap dengan teks putih */
   body {
-    @apply text-white; /* Teks putih */
-    background-color: transparent; /* Background transparan agar hero bg terlihat */
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; /* Font stack modern */
-    font-weight: 400; /* Berat font normal */
-    line-height: 1.6; /* Line height untuk readability yang lebih baik */
-    font-size: 16px; /* Base font size untuk readability */
+    @apply text-white;
+    /* Teks putih */
+    background-color: transparent;
+    /* Background transparan agar hero bg terlihat */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Font stack modern */
+    font-weight: 400;
+    /* Berat font normal */
+    line-height: 1.6;
+    /* Line height untuk readability yang lebih baik */
+    font-size: 16px;
+    /* Base font size untuk readability */
   }
 
   /* Styling untuk semua heading (h1-h6) - menggunakan Playfair Display */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif; /* Font elegan untuk heading */
-    font-weight: 600; /* Semi-bold */
-    letter-spacing: 0.01em; /* Sedikit spacing untuk readability */
-    line-height: 1.2; /* Compact line height */
-    color: #FFFFFF; /* Teks putih */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    /* Font elegan untuk heading */
+    font-weight: 600;
+    /* Semi-bold */
+    letter-spacing: 0.01em;
+    /* Sedikit spacing untuk readability */
+    line-height: 1.2;
+    /* Compact line height */
+    color: #FFFFFF;
+    /* Teks putih */
   }
 
   /* Responsive font sizes untuk better readability */
@@ -80,196 +127,326 @@
 
 /* Layer components untuk custom classes yang dapat digunakan ulang */
 @layer components {
+
   /* Typography - High Contrast - Kelas untuk heading dengan kontras tinggi */
-  .heading-xl { /* Heading extra large - untuk judul utama */
-    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl; /* Responsive text size dengan breakpoint sm */
-    font-family: 'Playfair Display', Georgia, serif; /* Font elegan */
-    font-weight: 600; /* Semi-bold */
-    letter-spacing: 0.01em; /* Sedikit spacing */
-    line-height: 1.1; /* Compact untuk readability */
-    color: #FFFFFF; /* Putih untuk kontras tinggi */
+  .heading-xl {
+    /* Heading extra large - untuk judul utama */
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
+    /* Responsive text size dengan breakpoint sm */
+    font-family: 'Playfair Display', Georgia, serif;
+    /* Font elegan */
+    font-weight: 600;
+    /* Semi-bold */
+    letter-spacing: 0.01em;
+    /* Sedikit spacing */
+    line-height: 1.1;
+    /* Compact untuk readability */
+    color: #FFFFFF;
+    /* Putih untuk kontras tinggi */
   }
-  
-  .heading-lg { /* Heading large - untuk sub-judul */
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl; /* Responsive size dengan breakpoint sm */
+
+  .heading-lg {
+    /* Heading large - untuk sub-judul */
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+    /* Responsive size dengan breakpoint sm */
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: 600;
     letter-spacing: 0.01em;
-    line-height: 1.2; /* Improved line height */
+    line-height: 1.2;
+    /* Improved line height */
     color: #FFFFFF;
   }
 
-  .heading-md { /* Heading medium - untuk judul section */
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl; /* Responsive dengan breakpoint sm */
+  .heading-md {
+    /* Heading medium - untuk judul section */
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+    /* Responsive dengan breakpoint sm */
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: 600;
     letter-spacing: 0.01em;
-    line-height: 1.2; /* Improved line height */
+    line-height: 1.2;
+    /* Improved line height */
     color: #FFFFFF;
   }
 
-  .heading-sm { /* Heading small - untuk judul card/kecil */
-    @apply text-xl sm:text-2xl md:text-3xl; /* Responsive dengan breakpoint sm */
+  .heading-sm {
+    /* Heading small - untuk judul card/kecil */
+    @apply text-xl sm:text-2xl md:text-3xl;
+    /* Responsive dengan breakpoint sm */
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: 600;
-    line-height: 1.3; /* Better line height */
+    line-height: 1.3;
+    /* Better line height */
     color: #FFFFFF;
   }
-  
-  .body-lg { /* Body text large - untuk deskripsi panjang */
-    @apply text-base sm:text-lg md:text-xl leading-relaxed; /* Size responsive dengan line height */
-    color: #D1D1D1; /* Abu-abu terang untuk kontras sedang */
-    line-height: 1.7; /* Improved line height untuk readability */
+
+  .body-lg {
+    /* Body text large - untuk deskripsi panjang */
+    @apply text-base sm:text-lg md:text-xl leading-relaxed;
+    /* Size responsive dengan line height */
+    color: #D1D1D1;
+    /* Abu-abu terang untuk kontras sedang */
+    line-height: 1.7;
+    /* Improved line height untuk readability */
   }
 
-  .body-md { /* Body text medium - untuk deskripsi standar */
-    @apply text-sm sm:text-base md:text-lg leading-relaxed; /* Responsive dengan breakpoint sm */
-    color: #D1D1D1; /* Abu-abu terang */
-    line-height: 1.6; /* Improved line height */
+  .body-md {
+    /* Body text medium - untuk deskripsi standar */
+    @apply text-sm sm:text-base md:text-lg leading-relaxed;
+    /* Responsive dengan breakpoint sm */
+    color: #D1D1D1;
+    /* Abu-abu terang */
+    line-height: 1.6;
+    /* Improved line height */
   }
 
   /* Tech Gradient Text - Teks dengan gradient warna untuk efek modern */
-  .gradient-text-tech { /* Menggunakan gradient biru ke emas */
-    background: linear-gradient(135deg, #3FA9F5 0%, #C6A664 100%); /* Gradient diagonal */
-    -webkit-background-clip: text; /* Clip background ke text (webkit) */
-    -webkit-text-fill-color: transparent; /* Buat text transparan untuk show gradient */
-    background-clip: text; /* Standard background clip */
+  .gradient-text-tech {
+    /* Menggunakan gradient biru ke emas */
+    background: linear-gradient(135deg, #3FA9F5 0%, #C6A664 100%);
+    /* Gradient diagonal */
+    -webkit-background-clip: text;
+    /* Clip background ke text (webkit) */
+    -webkit-text-fill-color: transparent;
+    /* Buat text transparan untuk show gradient */
+    background-clip: text;
+    /* Standard background clip */
   }
 
   /* Backgrounds - Kelas untuk background dengan tema tech */
-  .bg-deep-navy { /* Background navy gelap */
-    background-color: #0A192F; /* Menggunakan variabel custom */
+  .bg-deep-navy {
+    /* Background navy gelap */
+    background-color: #0A192F;
+    /* Menggunakan variabel custom */
   }
 
-  .bg-charcoal { /* Background charcoal */
-    background-color: #1C1C1E; /* Abu-abu gelap */
+  .bg-charcoal {
+    /* Background charcoal */
+    background-color: #1C1C1E;
+    /* Abu-abu gelap */
   }
 
-  .bg-gradient-tech { /* Background gradient tech */
-    background: linear-gradient(135deg, #0A192F 0%, #1C1C1E 100%); /* Gradient dari navy ke charcoal */
+  .bg-gradient-tech {
+    /* Background gradient tech */
+    background: linear-gradient(135deg, #0A192F 0%, #1C1C1E 100%);
+    /* Gradient dari navy ke charcoal */
   }
 
   /* Tech Grid Pattern - Pola grid untuk efek tech background */
-  .tech-grid-pattern { /* Grid pattern dengan warna biru transparan */
+  .tech-grid-pattern {
+    /* Grid pattern dengan warna biru transparan */
     background-image:
-      linear-gradient(rgba(63, 169, 245, 0.03) 1px, transparent 1px), /* Garis vertikal */
-      linear-gradient(90deg, rgba(63, 169, 245, 0.03) 1px, transparent 1px); /* Garis horizontal */
-    background-size: 50px 50px; /* Ukuran grid 50x50px */
+      linear-gradient(rgba(63, 169, 245, 0.03) 1px, transparent 1px),
+      /* Garis vertikal */
+      linear-gradient(90deg, rgba(63, 169, 245, 0.03) 1px, transparent 1px);
+    /* Garis horizontal */
+    background-size: 50px 50px;
+    /* Ukuran grid 50x50px */
   }
 
   /* Geometric Dots Pattern - Pola titik geometris */
-  .dots-pattern { /* Pola titik untuk texture halus */
-    background-image: radial-gradient(circle, rgba(63, 169, 245, 0.05) 1px, transparent 1px); /* Radial gradient untuk titik */
-    background-size: 20px 20px; /* Titik setiap 20px */
+  .dots-pattern {
+    /* Pola titik untuk texture halus */
+    background-image: radial-gradient(circle, rgba(63, 169, 245, 0.05) 1px, transparent 1px);
+    /* Radial gradient untuk titik */
+    background-size: 20px 20px;
+    /* Titik setiap 20px */
   }
 
   /* Glass Card - High Contrast - Efek kaca dengan backdrop blur */
-  .glass-card-tech { /* Card dengan efek glassmorphism */
-    background: rgba(28, 28, 30, 0.8); /* Background semi-transparan */
-    backdrop-filter: blur(16px); /* Blur background di belakang */
-    border: 1px solid rgba(63, 169, 245, 0.2); /* Border biru transparan */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* Shadow gelap */
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Transisi smooth */
+  .glass-card-tech {
+    /* Card dengan efek glassmorphism */
+    background: rgba(28, 28, 30, 0.8);
+    /* Background semi-transparan */
+    backdrop-filter: blur(16px);
+    /* Blur background di belakang */
+    border: 1px solid rgba(63, 169, 245, 0.2);
+    /* Border biru transparan */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    /* Shadow gelap */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Transisi smooth */
   }
 
-  .glass-card-tech:hover { /* Hover effect untuk glass card */
-    border-color: rgba(63, 169, 245, 0.5); /* Border lebih terang */
-    box-shadow: 0 12px 48px rgba(63, 169, 245, 0.2); /* Shadow biru */
-    transform: translateY(-4px); /* Lift effect */
+  .glass-card-tech:hover {
+    /* Hover effect untuk glass card */
+    border-color: rgba(63, 169, 245, 0.5);
+    /* Border lebih terang */
+    box-shadow: 0 12px 48px rgba(63, 169, 245, 0.2);
+    /* Shadow biru */
+    transform: translateY(-4px);
+    /* Lift effect */
   }
 
   /* Tech Button - Tombol dengan styling tech modern */
-  .tech-button { /* Tombol utama dengan efek tech */
-    @apply bg-[#3FA9F5] text-white font-medium px-8 py-4 rounded-lg; /* Background biru, teks putih */
-    transition: all 0.3s ease; /* Transisi smooth */
-    box-shadow: 0 4px 20px rgba(63, 169, 245, 0.3); /* Shadow biru */
-    border: 1px solid rgba(63, 169, 245, 0.5); /* Border biru transparan */
+  .tech-button {
+    /* Tombol utama dengan efek tech */
+    @apply bg-[#3FA9F5] text-white font-medium px-8 py-4 rounded-lg;
+    /* Background biru, teks putih */
+    transition: all 0.3s ease;
+    /* Transisi smooth */
+    box-shadow: 0 4px 20px rgba(63, 169, 245, 0.3);
+    /* Shadow biru */
+    border: 1px solid rgba(63, 169, 245, 0.5);
+    /* Border biru transparan */
   }
 
-  .tech-button:hover { /* Hover effect untuk tech button */
-    @apply bg-[#5BB8FF]; /* Background biru lebih terang */
-    box-shadow: 0 6px 30px rgba(63, 169, 245, 0.5); /* Shadow lebih besar */
-    transform: translateY(-2px); /* Lift effect */
+  .tech-button:hover {
+    /* Hover effect untuk tech button */
+    @apply bg-[#5BB8FF];
+    /* Background biru lebih terang */
+    box-shadow: 0 6px 30px rgba(63, 169, 245, 0.5);
+    /* Shadow lebih besar */
+    transform: translateY(-2px);
+    /* Lift effect */
+  }
+
+  .tech-button-gradient {
+    @apply bg-gradient-to-r from-[#3FA9F5] to-[#2d8fd5] text-white font-medium px-8 rounded-lg;
+    box-shadow: 0 4px 20px rgba(63, 169, 245, 0.25);
+    border: 1px solid rgba(63, 169, 245, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tech-button-gradient:hover {
+    box-shadow: 0 8px 30px rgba(63, 169, 245, 0.4);
+    border-color: rgba(63, 169, 245, 0.6);
+    transform: translateY(-1px);
   }
 
   /* Cyber Glow Effect - Efek glow dengan radial gradient */
-  .cyber-glow { /* Container untuk efek glow */
-    position: relative; /* Position relative untuk pseudo-element */
+  .cyber-glow {
+    /* Container untuk efek glow */
+    position: relative;
+    /* Position relative untuk pseudo-element */
   }
 
-  .cyber-glow::before { /* Pseudo-element untuk glow effect */
-    content: ''; /* Required untuk pseudo-element */
-    position: absolute; /* Position absolute terhadap parent */
-    inset: -30px; /* Extend 30px di semua sisi */
-    background: radial-gradient(circle, rgba(63, 169, 245, 0.2) 0%, transparent 70%); /* Radial gradient biru */
-    opacity: 0; /* Hidden by default */
-    transition: opacity 0.4s ease; /* Fade transition */
-    pointer-events: none; /* Tidak interfere dengan mouse events */
-    z-index: -1; /* Behind content */
+  .cyber-glow::before {
+    /* Pseudo-element untuk glow effect */
+    content: '';
+    /* Required untuk pseudo-element */
+    position: absolute;
+    /* Position absolute terhadap parent */
+    inset: -30px;
+    /* Extend 30px di semua sisi */
+    background: radial-gradient(circle, rgba(63, 169, 245, 0.2) 0%, transparent 70%);
+    /* Radial gradient biru */
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.4s ease;
+    /* Fade transition */
+    pointer-events: none;
+    /* Tidak interfere dengan mouse events */
+    z-index: -1;
+    /* Behind content */
   }
 
-  .cyber-glow:hover::before { /* Show glow on hover */
-    opacity: 1; /* Visible */
+  .cyber-glow:hover::before {
+    /* Show glow on hover */
+    opacity: 1;
+    /* Visible */
   }
 
   /* Neon Line Accent - Garis neon sebagai aksen */
-  .neon-line { /* Container untuk garis neon */
-    position: relative; /* Untuk positioning pseudo-element */
-    padding-bottom: 1rem; /* Space untuk garis */
+  .neon-line {
+    /* Container untuk garis neon */
+    position: relative;
+    /* Untuk positioning pseudo-element */
+    padding-bottom: 1rem;
+    /* Space untuk garis */
   }
 
-  .neon-line::after { /* Pseudo-element untuk garis */
-    content: ''; /* Required */
-    position: absolute; /* Position absolute */
-    bottom: 0; /* Di bawah text */
-    left: 0; /* Dari kiri */
-    width: 80px; /* Lebar garis */
-    height: 3px; /* Tinggi garis */
-    background: linear-gradient(90deg, #3FA9F5 0%, transparent 100%); /* Gradient dari biru ke transparan */
-    box-shadow: 0 0 10px rgba(63, 169, 245, 0.5); /* Glow effect */
+  .neon-line::after {
+    /* Pseudo-element untuk garis */
+    content: '';
+    /* Required */
+    position: absolute;
+    /* Position absolute */
+    bottom: 0;
+    /* Di bawah text */
+    left: 0;
+    /* Dari kiri */
+    width: 80px;
+    /* Lebar garis */
+    height: 3px;
+    /* Tinggi garis */
+    background: linear-gradient(90deg, #3FA9F5 0%, transparent 100%);
+    /* Gradient dari biru ke transparan */
+    box-shadow: 0 0 10px rgba(63, 169, 245, 0.5);
+    /* Glow effect */
   }
 
   /* Animated Gradient Background - Background gradient yang beranimasi */
-  .animated-gradient-bg { /* Background dengan animasi gradient */
-    background: linear-gradient(-45deg, #0A192F, #1C1C1E, #0A192F, #1A2332); /* Gradient dengan 4 warna */
-    background-size: 400% 400%; /* Size 4x untuk animasi smooth */
-    animation: gradientShift 15s ease infinite; /* Animasi selama 15 detik */
+  .animated-gradient-bg {
+    /* Background dengan animasi gradient */
+    background: linear-gradient(-45deg, #0A192F, #1C1C1E, #0A192F, #1A2332);
+    /* Gradient dengan 4 warna */
+    background-size: 400% 400%;
+    /* Size 4x untuk animasi smooth */
+    animation: gradientShift 15s ease infinite;
+    /* Animasi selama 15 detik */
   }
 
   /* Static Gradient Background - versi tanpa animasi untuk hero */
-  .hero-static-bg { /* Background gradient statis */
+  .hero-static-bg {
+    /* Background gradient statis */
     background: linear-gradient(-45deg, #0A192F, #1C1C1E, #0A192F, #1A2332);
     background-size: 400% 400%;
   }
 
-  @keyframes gradientShift { /* Keyframes untuk animasi gradient */
-    0% { background-position: 0% 50%; } /* Posisi awal */
-    50% { background-position: 100% 50%; } /* Posisi tengah */
-    100% { background-position: 0% 50%; } /* Kembali ke awal */
+  @keyframes gradientShift {
+
+    /* Keyframes untuk animasi gradient */
+    0% {
+      background-position: 0% 50%;
+    }
+
+    /* Posisi awal */
+    50% {
+      background-position: 100% 50%;
+    }
+
+    /* Posisi tengah */
+    100% {
+      background-position: 0% 50%;
+    }
+
+    /* Kembali ke awal */
   }
 
   /* Particle Effect Container - Container untuk efek partikel */
-  .particles-container { /* Container untuk animasi partikel */
-    position: absolute; /* Position absolute untuk overlay */
-    inset: 0; /* Full coverage */
-    overflow: hidden; /* Hide overflow */
-    pointer-events: none; /* Tidak interfere dengan interaksi */
+  .particles-container {
+    /* Container untuk animasi partikel */
+    position: absolute;
+    /* Position absolute untuk overlay */
+    inset: 0;
+    /* Full coverage */
+    overflow: hidden;
+    /* Hide overflow */
+    pointer-events: none;
+    /* Tidak interfere dengan interaksi */
   }
 
   /* Tech Divider - Garis pemisah dengan efek tech */
-  .tech-divider { /* Divider dengan gradient */
-    height: 1px; /* Tinggi 1px */
-    background: linear-gradient(90deg, transparent 0%, #3FA9F5 50%, transparent 100%); /* Gradient horizontal */
-    opacity: 0.3; /* Sedikit transparan */
+  .tech-divider {
+    /* Divider dengan gradient */
+    height: 1px;
+    /* Tinggi 1px */
+    background: linear-gradient(90deg, transparent 0%, #3FA9F5 50%, transparent 100%);
+    /* Gradient horizontal */
+    opacity: 0.3;
+    /* Sedikit transparan */
   }
 
   /* Fixed Hero Background - berada di bawah konten, tidak menutupi footer (dikendalikan via JS) */
   .hero-fixed-bg {
-    pointer-events: none; /* Jangan blok interaksi */
+    pointer-events: none;
+    /* Jangan blok interaksi */
   }
 
   /* Flowing Light Line - efek garis seperti dialiri cahaya */
-  .line-flow-y { /* Untuk garis vertikal (w-px, h-*) */
+  .line-flow-y {
+    /* Untuk garis vertikal (w-px, h-*) */
     position: relative;
     overflow: hidden;
   }
@@ -281,17 +458,25 @@
     top: -40%;
     width: 100%;
     height: 40%;
-    background: linear-gradient(to bottom, transparent 0%, rgba(63,169,245,0.9) 50%, transparent 100%);
-    filter: drop-shadow(0 0 6px rgba(63,169,245,0.6));
+    background: linear-gradient(to bottom, transparent 0%, rgba(63, 169, 245, 0.9) 50%, transparent 100%);
+    filter: drop-shadow(0 0 6px rgba(63, 169, 245, 0.6));
     animation: lineFlowY 2.2s linear infinite;
   }
 
   @keyframes lineFlowY {
-    0% { transform: translateY(0%); opacity: 0.8; }
-    100% { transform: translateY(300%); opacity: 0.8; }
+    0% {
+      transform: translateY(0%);
+      opacity: 0.8;
+    }
+
+    100% {
+      transform: translateY(300%);
+      opacity: 0.8;
+    }
   }
 
-  .line-flow-x { /* Untuk garis horizontal (h-px, w-*) */
+  .line-flow-x {
+    /* Untuk garis horizontal (h-px, w-*) */
     position: relative;
     overflow: hidden;
   }
@@ -303,185 +488,303 @@
     left: -40%;
     height: 100%;
     width: 40%;
-    background: linear-gradient(to right, transparent 0%, rgba(63,169,245,0.9) 50%, transparent 100%);
-    filter: drop-shadow(0 0 6px rgba(63,169,245,0.6));
+    background: linear-gradient(to right, transparent 0%, rgba(63, 169, 245, 0.9) 50%, transparent 100%);
+    filter: drop-shadow(0 0 6px rgba(63, 169, 245, 0.6));
     animation: lineFlowX 2.2s linear infinite;
   }
 
   @keyframes lineFlowX {
-    0% { transform: translateX(0%); opacity: 0.8; }
-    100% { transform: translateX(300%); opacity: 0.8; }
+    0% {
+      transform: translateX(0%);
+      opacity: 0.8;
+    }
+
+    100% {
+      transform: translateX(300%);
+      opacity: 0.8;
+    }
   }
 
   /* Glowing Border - Border dengan efek glow */
-  .glowing-border { /* Border yang glow */
-    border: 1px solid rgba(63, 169, 245, 0.3); /* Border biru transparan */
-    box-shadow: 0 0 20px rgba(63, 169, 245, 0.1); /* Shadow glow kecil */
-    transition: all 0.3s ease; /* Transisi smooth */
+  .glowing-border {
+    /* Border yang glow */
+    border: 1px solid rgba(63, 169, 245, 0.3);
+    /* Border biru transparan */
+    box-shadow: 0 0 20px rgba(63, 169, 245, 0.1);
+    /* Shadow glow kecil */
+    transition: all 0.3s ease;
+    /* Transisi smooth */
   }
 
-  .glowing-border:hover { /* Hover effect */
-    border-color: rgba(63, 169, 245, 0.6); /* Border lebih terang */
-    box-shadow: 0 0 30px rgba(63, 169, 245, 0.3); /* Glow lebih besar */
+  .glowing-border:hover {
+    /* Hover effect */
+    border-color: rgba(63, 169, 245, 0.6);
+    /* Border lebih terang */
+    box-shadow: 0 0 30px rgba(63, 169, 245, 0.3);
+    /* Glow lebih besar */
   }
 
   /* Text Shadow for Readability - Bayangan teks untuk readability */
-  .text-shadow-strong { /* Bayangan teks kuat untuk kontras */
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8); /* Bayangan gelap */
+  .text-shadow-strong {
+    /* Bayangan teks kuat untuk kontras */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    /* Bayangan gelap */
   }
 
   /* Overlay for Images - Overlay gelap untuk gambar */
-  .overlay-dark { /* Gradient overlay untuk gambar */
-    background: linear-gradient(180deg, rgba(10, 25, 47, 0.7) 0%, rgba(10, 25, 47, 0.9) 100%); /* Gradient dari atas ke bawah */
+  .overlay-dark {
+    /* Gradient overlay untuk gambar */
+    background: linear-gradient(180deg, rgba(10, 25, 47, 0.7) 0%, rgba(10, 25, 47, 0.9) 100%);
+    /* Gradient dari atas ke bawah */
   }
 
   /* Icon Tech Style - Styling untuk icon dengan tema tech */
-  .icon-tech { /* Icon dengan efek tech */
-    color: #3FA9F5; /* Warna biru */
-    transition: all 0.3s ease; /* Transisi smooth */
+  .icon-tech {
+    /* Icon dengan efek tech */
+    color: #3FA9F5;
+    /* Warna biru */
+    transition: all 0.3s ease;
+    /* Transisi smooth */
   }
 
-  .icon-tech:hover { /* Hover effect untuk icon */
-    color: #5BB8FF; /* Warna biru lebih terang */
-    filter: drop-shadow(0 0 8px rgba(63, 169, 245, 0.6)); /* Drop shadow glow */
+  .icon-tech:hover {
+    /* Hover effect untuk icon */
+    color: #5BB8FF;
+    /* Warna biru lebih terang */
+    filter: drop-shadow(0 0 8px rgba(63, 169, 245, 0.6));
+    /* Drop shadow glow */
   }
 
   /* Fade In Animation - Animasi fade in dari bawah */
-  .fade-in-up { /* Class untuk animasi fade in */
-    animation: fadeInUp 0.8s ease-out; /* Durasi 0.8s dengan easing */
+  .fade-in-up {
+    /* Class untuk animasi fade in */
+    animation: fadeInUp 0.8s ease-out;
+    /* Durasi 0.8s dengan easing */
   }
 
-  @keyframes fadeInUp { /* Keyframes untuk animasi */
-    from { /* State awal */
-      opacity: 0; /* Transparan */
-      transform: translateY(30px); /* Posisi 30px di bawah */
+  @keyframes fadeInUp {
+
+    /* Keyframes untuk animasi */
+    from {
+      /* State awal */
+      opacity: 0;
+      /* Transparan */
+      transform: translateY(30px);
+      /* Posisi 30px di bawah */
     }
-    to { /* State akhir */
-      opacity: 1; /* Opaque */
-      transform: translateY(0); /* Posisi normal */
+
+    to {
+      /* State akhir */
+      opacity: 1;
+      /* Opaque */
+      transform: translateY(0);
+      /* Posisi normal */
     }
   }
 
   /* Scale Animation - Animasi scale in */
-  .scale-in { /* Class untuk animasi scale */
-    animation: scaleIn 0.6s ease-out; /* Durasi 0.6s */
+  .scale-in {
+    /* Class untuk animasi scale */
+    animation: scaleIn 0.6s ease-out;
+    /* Durasi 0.6s */
   }
 
-  @keyframes scaleIn { /* Keyframes scale */
-    from { /* Dari kecil dan transparan */
+  @keyframes scaleIn {
+
+    /* Keyframes scale */
+    from {
+      /* Dari kecil dan transparan */
       opacity: 0;
-      transform: scale(0.9); /* Scale 90% */
+      transform: scale(0.9);
+      /* Scale 90% */
     }
-    to { /* Ke normal dan opaque */
+
+    to {
+      /* Ke normal dan opaque */
       opacity: 1;
-      transform: scale(1); /* Scale 100% */
+      transform: scale(1);
+      /* Scale 100% */
     }
   }
 
   /* Underline Glow Animation - Underline yang muncul dengan glow */
-  .underline-glow { /* Container untuk underline animasi */
-    position: relative; /* Untuk positioning pseudo-element */
-    display: inline-block; /* Agar underline mengikuti text width */
+  .underline-glow {
+    /* Container untuk underline animasi */
+    position: relative;
+    /* Untuk positioning pseudo-element */
+    display: inline-block;
+    /* Agar underline mengikuti text width */
   }
 
-  .underline-glow::after { /* Pseudo-element untuk underline */
-    content: ''; /* Required */
-    position: absolute; /* Position absolute */
-    bottom: -2px; /* 2px di bawah text */
-    left: 0; /* Dari kiri */
-    width: 0; /* Mulai dari width 0 */
-    height: 2px; /* Tinggi underline */
-    background: #3FA9F5; /* Warna biru */
-    box-shadow: 0 0 8px rgba(63, 169, 245, 0.8); /* Glow effect */
-    transition: width 0.3s ease; /* Animasi width */
+  .underline-glow::after {
+    /* Pseudo-element untuk underline */
+    content: '';
+    /* Required */
+    position: absolute;
+    /* Position absolute */
+    bottom: -2px;
+    /* 2px di bawah text */
+    left: 0;
+    /* Dari kiri */
+    width: 0;
+    /* Mulai dari width 0 */
+    height: 2px;
+    /* Tinggi underline */
+    background: #3FA9F5;
+    /* Warna biru */
+    box-shadow: 0 0 8px rgba(63, 169, 245, 0.8);
+    /* Glow effect */
+    transition: width 0.3s ease;
+    /* Animasi width */
   }
 
-  .underline-glow:hover::after { /* Hover effect */
-    width: 100%; /* Full width saat hover */
+  .underline-glow:hover::after {
+    /* Hover effect */
+    width: 100%;
+    /* Full width saat hover */
   }
 
   /* Custom Scrollbar - Tech Style - Scrollbar custom dengan tema tech */
-  ::-webkit-scrollbar { /* Lebar scrollbar */
-    width: 12px; /* Lebar 12px */
+  ::-webkit-scrollbar {
+    /* Lebar scrollbar */
+    width: 12px;
+    /* Lebar 12px */
   }
 
-  ::-webkit-scrollbar-track { /* Track/background scrollbar */
-    background: #0A192F; /* Background navy gelap */
+  ::-webkit-scrollbar-track {
+    /* Track/background scrollbar */
+    background: #0A192F;
+    /* Background navy gelap */
   }
 
-  ::-webkit-scrollbar-thumb { /* Handle scrollbar */
-    background: linear-gradient(180deg, #3FA9F5 0%, #C6A664 100%); /* Gradient biru ke emas */
-    border-radius: 6px; /* Rounded corners */
-    border: 2px solid #0A192F; /* Border dengan warna track */
+  ::-webkit-scrollbar-thumb {
+    /* Handle scrollbar */
+    background: linear-gradient(180deg, #3FA9F5 0%, #C6A664 100%);
+    /* Gradient biru ke emas */
+    border-radius: 6px;
+    /* Rounded corners */
+    border: 2px solid #0A192F;
+    /* Border dengan warna track */
   }
 
-  ::-webkit-scrollbar-thumb:hover { /* Hover effect */
-    background: linear-gradient(180deg, #5BB8FF 0%, #D4B896 100%); /* Gradient lebih terang */
+  ::-webkit-scrollbar-thumb:hover {
+    /* Hover effect */
+    background: linear-gradient(180deg, #5BB8FF 0%, #D4B896 100%);
+    /* Gradient lebih terang */
   }
 
   /* Section Spacing - Spacing untuk section dengan tema tech */
-  .section-tech { /* Class untuk spacing section */
-    @apply py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32; /* Padding vertical responsive dengan breakpoint sm */
+  .section-tech {
+    /* Class untuk spacing section */
+    @apply py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32;
+    /* Padding vertical responsive dengan breakpoint sm */
   }
 
   /* Container responsive untuk semua section */
   .container-responsive {
-    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16; /* Container dengan padding lebih lebar */
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16;
+    /* Container dengan padding lebih lebar */
   }
 
   /* Container untuk halaman yang tidak terlalu center */
   .container-wide {
-    @apply max-w-full mx-auto px-6 sm:px-8 lg:px-12 xl:px-20; /* Container lebih lebar untuk konten */
+    @apply max-w-full mx-auto px-6 sm:px-8 lg:px-12 xl:px-20;
+    /* Container lebih lebar untuk konten */
   }
 
   /* Grid responsive untuk cards */
   .grid-responsive {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8; /* Grid responsive dengan gap yang sesuai */
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+    /* Grid responsive dengan gap yang sesuai */
   }
 
   /* Text responsive untuk readability */
   .text-responsive {
-    @apply text-sm sm:text-base md:text-lg; /* Text size responsive */
+    @apply text-sm sm:text-base md:text-lg;
+    /* Text size responsive */
   }
 
   /* Floating Animation - Animasi mengapung */
-  .float-animation { /* Class untuk animasi mengapung */
-    animation: float 6s ease-in-out infinite; /* Durasi 6s, infinite loop */
+  .float-animation {
+    /* Class untuk animasi mengapung */
+    animation: float 6s ease-in-out infinite;
+    /* Durasi 6s, infinite loop */
   }
 
-  @keyframes float { /* Keyframes untuk animasi float */
-    0%, 100% { transform: translateY(0px); } /* Posisi awal dan akhir */
-    50% { transform: translateY(-20px); } /* Puncak animasi */
+  @keyframes float {
+
+    /* Keyframes untuk animasi float */
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    /* Posisi awal dan akhir */
+    50% {
+      transform: translateY(-20px);
+    }
+
+    /* Puncak animasi */
   }
 
   /* Pulse Glow - Animasi glow yang berdenyut */
-  .pulse-glow { /* Class untuk efek glow berdenyut */
-    animation: pulseGlow 2s ease-in-out infinite; /* Durasi 2s, infinite */
+  .pulse-glow {
+    /* Class untuk efek glow berdenyut */
+    animation: pulseGlow 2s ease-in-out infinite;
+    /* Durasi 2s, infinite */
   }
 
-  @keyframes pulseGlow { /* Keyframes untuk pulse glow */
-    0%, 100% { /* State awal dan akhir */
-      box-shadow: 0 0 20px rgba(63, 169, 245, 0.3); /* Glow kecil */
+  @keyframes pulseGlow {
+
+    /* Keyframes untuk pulse glow */
+    0%,
+    100% {
+      /* State awal dan akhir */
+      box-shadow: 0 0 20px rgba(63, 169, 245, 0.3);
+      /* Glow kecil */
     }
-    50% { /* State tengah */
-      box-shadow: 0 0 40px rgba(63, 169, 245, 0.6); /* Glow besar */
+
+    50% {
+      /* State tengah */
+      box-shadow: 0 0 40px rgba(63, 169, 245, 0.6);
+      /* Glow besar */
     }
+  }
+
+  /* Static Glow Utilities */
+  .glow-blue-sm {
+    box-shadow: 0 0 15px rgba(63, 169, 245, 0.2);
+  }
+
+  .glow-blue-md {
+    box-shadow: 0 0 25px rgba(63, 169, 245, 0.4);
+  }
+
+  .glow-gold-sm {
+    box-shadow: 0 0 15px rgba(198, 166, 100, 0.2);
   }
 }
 
 /* Layer utilities untuk utility classes tambahan */
 @layer utilities {
-  .text-balance { /* Utility untuk text wrapping balance */
-    text-wrap: balance; /* Membuat text wrapping lebih seimbang */
+  .text-balance {
+    /* Utility untuk text wrapping balance */
+    text-wrap: balance;
+    /* Membuat text wrapping lebih seimbang */
   }
 
   /* High Contrast Utilities - Utility untuk kontras tinggi */
-  .text-high-contrast { /* Teks dengan kontras tinggi */
-    color: #FFFFFF; /* Putih */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan untuk readability */
+  .text-high-contrast {
+    /* Teks dengan kontras tinggi */
+    color: #FFFFFF;
+    /* Putih */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    /* Bayangan untuk readability */
   }
 
-  .bg-overlay { /* Background overlay */
-    background: rgba(10, 25, 47, 0.85); /* Overlay gelap semi-transparan */
+  .bg-overlay {
+    /* Background overlay */
+    background: rgba(10, 25, 47, 0.85);
+    /* Overlay gelap semi-transparan */
   }
 }

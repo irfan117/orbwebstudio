@@ -8,10 +8,10 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/common/Card';
 import { messageQueries, serviceQueries } from '@/lib/supabase/queries';
 import { useToast } from '@/hooks/use-toast';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  Mail,
+  Phone,
+  MapPin,
   Clock,
   Send,
   CheckCircle
@@ -123,10 +123,11 @@ export default function ContactPage() {
 
   return (
     <div>
-      <Section 
+      <Section
         title="Get In Touch"
         subtitle="Kami siap mendengar ide Anda. Hubungi kami dan mari mulai percakapan untuk membangun sesuatu yang luar biasa."
         background="dark"
+        className="pt-32 lg:pt-40"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Contact Form */}
@@ -169,7 +170,7 @@ export default function ContactPage() {
                 </select>
                 <p className="text-xs text-[#D1D1D1]">Admin akan memproses pesanan Anda secara manual setelah kami menerima pesan.</p>
               </div>
-              
+
               <Input
                 label="Phone Number"
                 name="phone"
@@ -177,7 +178,7 @@ export default function ContactPage() {
                 onChange={handleInputChange}
                 placeholder="+62 812-3456-7890"
               />
-              
+
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white">
                   Message <span className="text-red-500">*</span>
@@ -192,9 +193,9 @@ export default function ContactPage() {
                   placeholder="Tell us about your project..."
                 />
               </div>
-              
-              <Button 
-                type="submit" 
+
+              <Button
+                type="submit"
                 disabled={isSubmitting}
                 className="w-full tech-button"
                 size="lg"
@@ -218,8 +219,8 @@ export default function ContactPage() {
                 Contact Information
               </h3>
               <p className="text-[#D1D1D1] leading-relaxed">
-                Kami selalu siap membantu Anda. Jangan ragu untuk menghubungi kami 
-                melalui berbagai channel yang tersedia. Tim kami akan merespons 
+                Kami selalu siap membantu Anda. Jangan ragu untuk menghubungi kami
+                melalui berbagai channel yang tersedia. Tim kami akan merespons
                 dalam waktu 24 jam.
               </p>
             </div>
@@ -272,7 +273,7 @@ export default function ContactPage() {
       </Section>
 
       {/* Map Section */}
-      <Section 
+      <Section
         title="Find Us"
         subtitle="Visit our office for a face-to-face discussion"
         background="dark"

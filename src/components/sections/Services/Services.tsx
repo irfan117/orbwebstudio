@@ -30,11 +30,15 @@ export default function Services() {
 
   if (loading) {
     return (
-      <Section title="Layanan Kami" subtitle="Layanan kami dirancang untuk memberikan solusi menyeluruh — mulai dari desain, pengembangan, hingga pemeliharaan.">
+      <Section
+        title="Layanan Kami"
+        subtitle="Layanan kami dirancang untuk memberikan solusi menyeluruh — mulai dari desain, pengembangan, hingga pemeliharaan."
+        background="transparent"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, i) => (
             <div key={i} className="animate-pulse">
-              <div className="glass rounded-2xl h-96" />
+              <div className="glass-card-tech rounded-2xl h-80 opacity-50" />
             </div>
           ))}
         </div>
@@ -56,18 +60,18 @@ export default function Services() {
       {/* Bento Grid Layout */}
       <div className="grid-responsive auto-rows-fr">
         {services.map((service, index) => (
-          <ServiceCard 
-            key={service.id} 
-            service={service} 
+          <ServiceCard
+            key={service.id}
+            service={service}
             featured={index === 0}
           />
         ))}
       </div>
 
       <div className="text-center mt-12 sm:mt-16">
-        <Button 
-          asChild 
-          size="lg" 
+        <Button
+          asChild
+          size="lg"
           className="group tech-button text-lg px-6 sm:px-8 py-4 sm:py-6"
         >
           <Link href="/services" className="flex items-center">

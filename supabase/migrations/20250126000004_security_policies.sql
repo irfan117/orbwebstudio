@@ -7,6 +7,14 @@
 -- Enable RLS on all tables
 -- admin_users table removed, using Supabase Auth directly
 
+-- View for dashboard stats (Added here to ensure availability)
+CREATE OR REPLACE VIEW dashboard_stats AS
+SELECT
+  (SELECT COUNT(*) FROM portfolios) as total_projects,
+  (SELECT COUNT(*) FROM services) as total_services,
+  (SELECT COUNT(*) FROM contact_messages WHERE is_read = false) as unread_messages,
+  (SELECT COUNT(*) FROM testimonials WHERE is_approved = true) as active_testimonials;
+
 ALTER TABLE project_types ENABLE ROW LEVEL SECURITY;
 ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
 ALTER TABLE portfolios ENABLE ROW LEVEL SECURITY;
@@ -251,7 +259,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO authenticate
 
 -- Create audit table
 CREATE TABLE IF NOT EXISTS audit_log (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   table_name TEXT NOT NULL,
   operation TEXT NOT NULL,
   old_data JSONB,

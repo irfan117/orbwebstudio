@@ -6,12 +6,12 @@ import { Card } from '@/components/common/Card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
-import { 
-  Users, 
-  Award, 
-  Target, 
-  Lightbulb, 
-  CheckCircle, 
+import {
+  Users,
+  Award,
+  Target,
+  Lightbulb,
+  CheckCircle,
   ArrowRight,
   Code,
   Palette,
@@ -108,10 +108,10 @@ export default function AboutPage() {
   return (
     <div>
       {/* Hero Section with Image */}
-      <section className="section-tech bg-deep-navy relative overflow-hidden">
+      <section className="section-tech bg-deep-navy relative overflow-hidden pt-32 lg:pt-40">
         {/* Tech Grid Pattern */}
         <div className="absolute inset-0 tech-grid-pattern opacity-20" />
-        
+
         <div className="container-wide relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
@@ -120,12 +120,12 @@ export default function AboutPage() {
                 Kami berawal dari tim kecil dengan visi besar: membantu brand dan individu tampil maksimal di dunia digital.
               </p>
               <p className="body-lg text-[#D1D1D1] mb-8">
-                Sejak 2021, Orb Web Studio telah membantu puluhan bisnis dan individu 
-                membangun kehadiran digital yang kuat. Kami percaya bahwa setiap 
+                Sejak 2021, Orb Web Studio telah membantu puluhan bisnis dan individu
+                membangun kehadiran digital yang kuat. Kami percaya bahwa setiap
                 proyek adalah kesempatan untuk menciptakan sesuatu yang luar biasa.
               </p>
-              
-              <div className="grid grid-cols-3 gap-4 sm:gap-6">
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                 <div className="text-center glass-card-tech p-4 rounded-xl">
                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                     {Math.floor(counters.projects)}+
@@ -164,7 +164,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <Section 
+      <Section
         title="Why Choose Us"
         subtitle="Kami menggabungkan desain kreatif, teknologi mutakhir, dan strategi digital untuk memberikan hasil yang nyata."
         background="dark"
@@ -189,7 +189,7 @@ export default function AboutPage() {
       </Section>
 
       {/* Our Process with Image */}
-      <Section 
+      <Section
         title="Our Process"
         subtitle="Kami mengikuti proses yang terstruktur untuk memastikan setiap proyek berjalan lancar"
         background="dark"
@@ -250,7 +250,7 @@ export default function AboutPage() {
       </Section>
 
       {/* Team Section */}
-      <Section 
+      <Section
         title="Meet Our Team"
         subtitle="Tim profesional yang berdedikasi untuk kesuksesan proyek Anda"
         background="dark"
@@ -286,7 +286,7 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="section-tech bg-deep-navy relative overflow-hidden">
         <div className="absolute inset-0 tech-grid-pattern opacity-20" />
-        
+
         <div className="container-wide relative z-10 text-center">
           <h2 className="heading-md text-white mb-4">Ready to Work Together?</h2>
           <p className="body-lg text-[#D1D1D1] mb-8 max-w-2xl mx-auto">

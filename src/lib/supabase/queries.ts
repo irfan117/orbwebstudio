@@ -211,13 +211,18 @@ export const portfolioQueries = {
       .from('portfolios')
       .select(`
         *,
-        project_type:project_types(*),
-        category:categories(*)
+        project_types(*),
+        categories(*)
       `)
       .order('sort_order', { ascending: true });
 
     if (error) throw error;
-    return data as Portfolio[];
+    // Map the relationships to the expected specific field names
+    return data.map((item: any) => ({
+      ...item,
+      project_type: item.project_types,
+      category: item.categories
+    })) as Portfolio[];
   },
 
   async getFeatured() {
@@ -225,14 +230,17 @@ export const portfolioQueries = {
       .from('portfolios')
       .select(`
         *,
-        project_type:project_types(*)
+        project_types(*)
       `)
       .eq('is_featured', true)
       .order('sort_order', { ascending: true })
       .limit(6);
 
     if (error) throw error;
-    return data as Portfolio[];
+    return data.map((item: any) => ({
+      ...item,
+      project_type: item.project_types
+    })) as Portfolio[];
   },
 
   async getByCategory(categoryId: string) {
@@ -240,13 +248,16 @@ export const portfolioQueries = {
       .from('portfolios')
       .select(`
         *,
-        project_type:project_types(*)
+        project_types(*)
       `)
       .eq('category_id', categoryId)
       .order('sort_order', { ascending: true });
 
     if (error) throw error;
-    return data as Portfolio[];
+    return data.map((item: any) => ({
+      ...item,
+      project_type: item.project_types
+    })) as Portfolio[];
   },
 
   async getByProjectType(projectTypeId: string) {
@@ -254,13 +265,16 @@ export const portfolioQueries = {
       .from('portfolios')
       .select(`
         *,
-        project_type:project_types(*)
+        project_types(*)
       `)
       .eq('project_type_id', projectTypeId)
       .order('sort_order', { ascending: true });
 
     if (error) throw error;
-    return data as Portfolio[];
+    return data.map((item: any) => ({
+      ...item,
+      project_type: item.project_types
+    })) as Portfolio[];
   },
 
   async getById(id: string) {
@@ -275,9 +289,15 @@ export const portfolioQueries = {
   },
 
   async create(portfolio: Omit<Portfolio, 'id' | 'created_at' | 'updated_at'>) {
+    // Remove relational data that shouldn't be sent to the DB
+    const { project_type, category, ...rest } = portfolio as any;
+    const payload = { ...rest };
+    delete payload.project_types;
+    delete payload.categories;
+
     const { data, error } = await supabase
       .from('portfolios')
-      .insert([portfolio])
+      .insert([payload])
       .select()
       .single();
 
@@ -286,9 +306,15 @@ export const portfolioQueries = {
   },
 
   async update(id: string, portfolio: Partial<Portfolio>) {
+    // Remove relational data that shouldn't be sent to the DB
+    const { project_type, category, ...rest } = portfolio as any;
+    const payload = { ...rest };
+    delete payload.project_types;
+    delete payload.categories;
+
     const { data, error } = await supabase
       .from('portfolios')
-      .update(portfolio)
+      .update(payload)
       .eq('id', id)
       .select()
       .single();

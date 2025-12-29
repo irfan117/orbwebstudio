@@ -40,15 +40,15 @@ export default function PortfolioPage() {
   const filteredPortfolios = selectedCategory === 'All'
     ? portfolios
     : portfolios.filter(portfolio =>
-        portfolio.project_type?.name === selectedCategory ||
-        portfolio.category?.name === selectedCategory
-      );
+      portfolio.project_type?.name === selectedCategory ||
+      portfolio.category?.name === selectedCategory
+    );
 
   if (loading) {
     return (
       <div className="pt-20">
-        <Section 
-          title="Our Portfolio" 
+        <Section
+          title="Our Portfolio"
           subtitle="Setiap proyek kami mencerminkan dedikasi, kreativitas, dan kualitas. Lihat hasil kerja kami di berbagai bidang dan industri."
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -66,7 +66,7 @@ export default function PortfolioPage() {
   return (
     <div>
       {/* Hero Section with Image */}
-      <section className="section-tech bg-deep-navy relative overflow-hidden">
+      <section className="section-tech bg-deep-navy relative overflow-hidden pt-32 lg:pt-40">
         {/* Tech Grid Pattern */}
         <div className="absolute inset-0 tech-grid-pattern opacity-20" />
 
@@ -82,7 +82,7 @@ export default function PortfolioPage() {
                 hingga aplikasi mobile, kami telah membantu banyak bisnis mencapai tujuan digital mereka.
               </p>
 
-              <div className="grid grid-cols-3 gap-4 sm:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                 <div className="text-center glass-card-tech p-4 rounded-xl">
                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                     50+
@@ -139,11 +139,10 @@ export default function PortfolioPage() {
           <Button
             variant={selectedCategory === 'All' ? 'default' : 'outline'}
             onClick={() => setSelectedCategory('All')}
-            className={`mb-2 transition-all duration-300 ${
-              selectedCategory === 'All'
-                ? 'tech-button shadow-lg shadow-[#3FA9F5]/30'
-                : 'border-2 border-[#3FA9F5]/40 bg-[#3FA9F5]/10 text-[#3FA9F5] hover:bg-[#3FA9F5]/20 hover:border-[#3FA9F5]/60 hover:text-white hover:shadow-md hover:shadow-[#3FA9F5]/20'
-            }`}
+            className={`mb-2 transition-all duration-300 ${selectedCategory === 'All'
+              ? 'tech-button shadow-lg shadow-[#3FA9F5]/30'
+              : 'border-2 border-[#3FA9F5]/40 bg-[#3FA9F5]/10 text-[#3FA9F5] hover:bg-[#3FA9F5]/20 hover:border-[#3FA9F5]/60 hover:text-white hover:shadow-md hover:shadow-[#3FA9F5]/20'
+              }`}
           >
             All
           </Button>
@@ -152,11 +151,10 @@ export default function PortfolioPage() {
               key={projectType.id}
               variant={selectedCategory === projectType.name ? 'default' : 'outline'}
               onClick={() => setSelectedCategory(projectType.name)}
-              className={`mb-2 transition-all duration-300 ${
-                selectedCategory === projectType.name
-                  ? 'tech-button shadow-lg shadow-[#3FA9F5]/30'
-                  : 'border-2 border-[#3FA9F5]/40 bg-[#3FA9F5]/10 text-[#3FA9F5] hover:bg-[#3FA9F5]/20 hover:border-[#3FA9F5]/60 hover:text-white hover:shadow-md hover:shadow-[#3FA9F5]/20'
-              }`}
+              className={`mb-2 transition-all duration-300 ${selectedCategory === projectType.name
+                ? 'tech-button shadow-lg shadow-[#3FA9F5]/30'
+                : 'border-2 border-[#3FA9F5]/40 bg-[#3FA9F5]/10 text-[#3FA9F5] hover:bg-[#3FA9F5]/20 hover:border-[#3FA9F5]/60 hover:text-white hover:shadow-md hover:shadow-[#3FA9F5]/20'
+                }`}
             >
               {projectType.name}
             </Button>
