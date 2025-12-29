@@ -8,8 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { contactMessageQueries } from '@/lib/supabase/queries_comprehensive';
-import { ContactMessage } from '@/types/comprehensive';
+import { contactMessageQueries } from '@/lib/supabase/queries';
+import { ContactMessage } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Phone, Building, Calendar, Eye, EyeOff, Reply, Trash, Loader2, Search, Filter } from 'lucide-react';
 
@@ -131,14 +131,14 @@ export default function AdminMessagesPage() {
 
   const filteredMessages = messages.filter(message => {
     const matchesSearch = message.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         message.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         message.message.toLowerCase().includes(searchTerm.toLowerCase());
-    
+      message.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      message.message.toLowerCase().includes(searchTerm.toLowerCase());
+
     const matchesFilter = filterStatus === 'all' ||
-                         (filterStatus === 'unread' && !message.is_read) ||
-                         (filterStatus === 'read' && message.is_read) ||
-                         (filterStatus === 'responded' && message.is_responded);
-    
+      (filterStatus === 'unread' && !message.is_read) ||
+      (filterStatus === 'read' && message.is_read) ||
+      (filterStatus === 'responded' && message.is_responded);
+
     return matchesSearch && matchesFilter;
   });
 
@@ -377,8 +377,8 @@ export default function AdminMessagesPage() {
           </div>
           <h3 className="text-lg font-semibold text-white mb-2">No Messages Found</h3>
           <p className="text-[#D1D1D1]">
-            {searchTerm || filterStatus !== 'all' 
-              ? 'No messages match your current filters.' 
+            {searchTerm || filterStatus !== 'all'
+              ? 'No messages match your current filters.'
               : 'No contact messages have been received yet.'}
           </p>
         </div>

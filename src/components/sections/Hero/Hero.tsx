@@ -7,37 +7,36 @@ import { ArrowRight, Sparkles, TrendingUp, Zap, Code2 } from 'lucide-react';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hideBg, setHideBg] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  // Sembunyikan background hero saat footer terlihat
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const footer = document.querySelector('footer');
-    if (!footer) return;
+  // Background tetap terlihat sepanjang halaman
+  // useEffect(() => {
+  //   if (typeof window === 'undefined') return;
+  //   const footer = document.querySelector('footer');
+  //   if (!footer) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          setHideBg(entry.isIntersecting);
-        }
-      },
-      { root: null, threshold: 0.01 }
-    );
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       for (const entry of entries) {
+  //         setHideBg(entry.isIntersecting);
+  //       }
+  //     },
+  //     { root: null, threshold: 0.01 }
+  //   );
 
-    observer.observe(footer);
-    return () => observer.disconnect();
-  }, []);
+  //   observer.observe(footer);
+  //   return () => observer.disconnect();
+  // }, []);
 
   // Background dibuat statis (tanpa parallax)
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden"> {/* Section hero transparan, background dipindah ke layer fixed */}
-      {/* Fixed Background Layer - tetap saat scroll, disembunyikan ketika footer masuk viewport */}
-      <div className={`fixed inset-0 -z-10 hero-fixed-bg transition-opacity duration-500 ${hideBg ? 'opacity-0' : 'opacity-100'}`}>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden"> {/* Section hero dengan background tetap */}
+      {/* Fixed Background Layer - tetap saat scroll, menutupi seluruh halaman */}
+      <div className="fixed inset-0 -z-10" style={{ height: '10000px' }}>
         <div className="absolute inset-0 hero-static-bg" />
         {/* Tech Grid Pattern - Pola grid sebagai background */}
         <div className="absolute inset-0 tech-grid-pattern" />

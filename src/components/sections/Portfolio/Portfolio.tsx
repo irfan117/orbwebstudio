@@ -30,8 +30,8 @@ export default function Portfolio() {
 
   if (loading) {
     return (
-      <Section 
-        title="Portfolio Kami" 
+      <Section
+        title="Portfolio Kami"
         subtitle="Kami percaya hasil berbicara lebih keras dari kata-kata. Berikut beberapa proyek yang kami kembangkan dari nol hingga siap digunakan 👇"
         background="transparent"
       >

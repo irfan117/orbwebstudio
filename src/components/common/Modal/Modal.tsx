@@ -13,6 +13,7 @@ export interface ModalProps {
   footer?: React.ReactNode;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   closeOnOverlayClick?: boolean;
+  className?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -23,6 +24,7 @@ const Modal: React.FC<ModalProps> = ({
   footer,
   size = 'md',
   closeOnOverlayClick = true,
+  className,
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -73,29 +75,26 @@ const Modal: React.FC<ModalProps> = ({
       <div
         className={cn(
           'relative bg-white rounded-lg shadow-xl w-full mx-4',
-          sizeClasses[size]
+          sizeClasses[size],
+          className
         )}
       >
         {/* Header */}
-        {(title || onClose) && (
-          <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            {title && (
-              <h2 className="text-lg font-semibold text-gray-900">
-                {title}
-              </h2>
-            )}
-            {onClose && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={onClose}
-                className="h-8 w-8"
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            )}
-          </div>
-        )}
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          {title && (
+            <h2 className="text-lg font-semibold text-gray-900">
+              {title}
+            </h2>
+          )}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            className="h-8 w-8"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
         
         {/* Content */}
         <div className="p-6">

@@ -3,8 +3,10 @@
 -- Security policies for Orb Web Studio database
 -- =====================================================
 
+-- Enable RLS on all tables (conditionally for admin_users)
 -- Enable RLS on all tables
-ALTER TABLE admin_users ENABLE ROW LEVEL SECURITY;
+-- admin_users table removed, using Supabase Auth directly
+
 ALTER TABLE project_types ENABLE ROW LEVEL SECURITY;
 ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
 ALTER TABLE portfolios ENABLE ROW LEVEL SECURITY;
@@ -70,8 +72,7 @@ CREATE POLICY "Public site settings are viewable by everyone" ON site_settings
 -- =====================================================
 
 -- Admin users - full access for authenticated admins
-CREATE POLICY "Admins can manage admin users" ON admin_users
-  FOR ALL USING (auth.role() = 'authenticated');
+
 
 -- Project types - full access for authenticated users
 CREATE POLICY "Authenticated users can manage project types" ON project_types
@@ -169,17 +170,13 @@ CREATE POLICY "Anyone can create form submissions" ON form_submissions
 CREATE OR REPLACE FUNCTION is_admin()
 RETURNS BOOLEAN AS $$
 BEGIN
-  RETURN EXISTS (
-    SELECT 1 FROM admin_users 
-    WHERE email = auth.jwt() ->> 'email'
-    AND is_active = true
-  );
+  -- Any authenticated user is considered admin for simplicity
+  RETURN auth.role() = 'authenticated';
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- Admin-only policies using function
-CREATE POLICY "Only admins can manage admin users" ON admin_users
-  FOR ALL USING (is_admin());
+
 
 -- =====================================================
 -- GRANT PERMISSIONS
@@ -280,8 +277,7 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- Apply audit triggers to sensitive tables
-CREATE TRIGGER audit_admin_users AFTER INSERT OR UPDATE OR DELETE ON admin_users
-  FOR EACH ROW EXECUTE FUNCTION audit_trigger_function();
+
 
 CREATE TRIGGER audit_portfolios AFTER INSERT OR UPDATE OR DELETE ON portfolios
   FOR EACH ROW EXECUTE FUNCTION audit_trigger_function();

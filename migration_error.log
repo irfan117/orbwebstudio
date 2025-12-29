@@ -1,0 +1,80 @@
+Initialising login role...
+Connecting to remote database...
+Do you want to push these migrations to the remote database?
+ • 20250126000001_comprehensive_schema.sql
+ • 20250126000004_security_policies.sql
+
+ [Y/n] Applying migration 20250126000001_comprehensive_schema.sql...
+NOTICE (42710): extension "uuid-ossp" already exists, skipping
+NOTICE (42P07): relation "project_types" already exists, skipping
+ERROR: relation "admin_users" does not exist (SQLSTATE 42P01)                                                                                            
+At statement: 38                                                                                                                                         
+-- Apply triggers to all tables with updated_at column (only if not exists)                                                                              
+DO $$                                                                                                                                                    
+BEGIN                                                                                                                                                    
+    -- Admin users trigger                                                                                                                               
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_admin_users_updated_at') THEN                                                         
+        CREATE TRIGGER update_admin_users_updated_at BEFORE UPDATE ON admin_users FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();              
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Project types trigger                                                                                                                             
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_project_types_updated_at') THEN                                                       
+        CREATE TRIGGER update_project_types_updated_at BEFORE UPDATE ON project_types FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();          
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Categories trigger                                                                                                                                
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_categories_updated_at') THEN                                                          
+        CREATE TRIGGER update_categories_updated_at BEFORE UPDATE ON categories FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();                
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Portfolios trigger                                                                                                                                
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_portfolios_updated_at') THEN                                                          
+        CREATE TRIGGER update_portfolios_updated_at BEFORE UPDATE ON portfolios FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();                
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Services trigger                                                                                                                                  
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_services_updated_at') THEN                                                            
+        CREATE TRIGGER update_services_updated_at BEFORE UPDATE ON services FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();                    
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Service packages trigger                                                                                                                          
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_service_packages_updated_at') THEN                                                    
+        CREATE TRIGGER update_service_packages_updated_at BEFORE UPDATE ON service_packages FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();    
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Templates trigger                                                                                                                                 
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_templates_updated_at') THEN                                                           
+        CREATE TRIGGER update_templates_updated_at BEFORE UPDATE ON templates FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();                  
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Template purchases trigger                                                                                                                        
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_template_purchases_updated_at') THEN                                                  
+        CREATE TRIGGER update_template_purchases_updated_at BEFORE UPDATE ON template_purchases FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Testimonials trigger                                                                                                                              
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_testimonials_updated_at') THEN                                                        
+        CREATE TRIGGER update_testimonials_updated_at BEFORE UPDATE ON testimonials FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();            
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Contact messages trigger                                                                                                                          
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_contact_messages_updated_at') THEN                                                    
+        CREATE TRIGGER update_contact_messages_updated_at BEFORE UPDATE ON contact_messages FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();    
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Blog categories trigger                                                                                                                           
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_blog_categories_updated_at') THEN                                                     
+        CREATE TRIGGER update_blog_categories_updated_at BEFORE UPDATE ON blog_categories FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();      
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Blog posts trigger                                                                                                                                
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_blog_posts_updated_at') THEN                                                          
+        CREATE TRIGGER update_blog_posts_updated_at BEFORE UPDATE ON blog_posts FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();                
+    END IF;                                                                                                                                              
+                                                                                                                                                         
+    -- Site settings trigger                                                                                                                             
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_site_settings_updated_at') THEN                                                       
+        CREATE TRIGGER update_site_settings_updated_at BEFORE UPDATE ON site_settings FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();          
+    END IF;                                                                                                                                              
+END $$                                                                                                                                                   
+Try rerunning the command with --debug to troubleshoot the error.

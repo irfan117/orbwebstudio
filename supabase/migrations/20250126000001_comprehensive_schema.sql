@@ -6,23 +6,27 @@
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+-- Function to update updated_at timestamp
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
 -- =====================================================
 -- 1. USERS & AUTHENTICATION
 -- =====================================================
 
 -- Admin users table
-CREATE TABLE IF NOT EXISTS admin_users (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
-  full_name VARCHAR(255),
-  role VARCHAR(50) DEFAULT 'admin',
-  avatar_url TEXT,
-  is_active BOOLEAN DEFAULT true,
-  last_login TIMESTAMP WITH TIME ZONE,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+-- =====================================================
+-- 1. USERS & AUTHENTICATION
+-- =====================================================
+
+-- Admin users - authentication is handled by Supabase Auth
+-- No separate admin_users table needed for now
+
 
 -- =====================================================
 -- 2. PROJECT MANAGEMENT
@@ -187,7 +191,7 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   is_read BOOLEAN DEFAULT false,
   is_responded BOOLEAN DEFAULT false,
   priority VARCHAR(20) DEFAULT 'normal', -- low, normal, high, urgent
-  assigned_to UUID REFERENCES admin_users(id),
+  assigned_to UUID, -- References auth.users(id) implicity, or we can add FK if needed
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -226,7 +230,7 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   excerpt TEXT,
   content TEXT NOT NULL,
   featured_image TEXT,
-  author_id UUID REFERENCES admin_users(id),
+  author_id UUID, -- References auth.users(id)
   category_id UUID REFERENCES blog_categories(id),
   tags TEXT[],
   is_published BOOLEAN DEFAULT false,
@@ -335,11 +339,7 @@ $$ language 'plpgsql';
 -- Apply triggers to all tables with updated_at column (only if not exists)
 DO $$
 BEGIN
-    -- Admin users trigger
-    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_admin_users_updated_at') THEN
-        CREATE TRIGGER update_admin_users_updated_at BEFORE UPDATE ON admin_users FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-    END IF;
-    
+    -- Project types trigger
     -- Project types trigger
     IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_project_types_updated_at') THEN
         CREATE TRIGGER update_project_types_updated_at BEFORE UPDATE ON project_types FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();

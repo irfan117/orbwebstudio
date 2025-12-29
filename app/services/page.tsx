@@ -9,6 +9,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { WebDesignSVG, EcommerceSVG, MobileAppSVG, SeoSVG } from '@/components/svg/ServicesIllustrations';
+import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 
 export default function ServicesPage() {
   const [services, setServices] = useState<Service[]>([]);
@@ -59,7 +61,7 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
               <div key={i} className="animate-pulse">
-                <div className="bg-gray-200 rounded-lg h-64" />
+                <div className="bg-[#1C1C1E] rounded-lg h-64" />
               </div>
             ))}
           </div>
@@ -70,182 +72,80 @@ export default function ServicesPage() {
 
   return (
     <div>
+      {/* Hero Section with Image */}
+      <section className="section-tech bg-deep-navy relative overflow-hidden">
+        {/* Tech Grid Pattern */}
+        <div className="absolute inset-0 tech-grid-pattern opacity-20" />
+
+        <div className="container-wide relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <h1 className="heading-lg text-white mb-6">
+                <span className="gradient-text-tech">Solusi Digital</span> Terdepan
+              </h1>
+              <p className="body-lg text-[#D1D1D1] mb-6">
+                Transformasi bisnis Anda dengan teknologi terkini dan layanan profesional yang terpercaya.
+              </p>
+              <p className="body-lg text-[#D1D1D1] mb-8">
+                Kami mengkhususkan diri dalam pengembangan website, aplikasi mobile, dan solusi digital
+                yang membantu bisnis Anda mencapai kesuksesan di dunia digital.
+              </p>
+
+              <div className="grid grid-cols-3 gap-4 sm:gap-6">
+                <div className="text-center glass-card-tech p-4 rounded-xl">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
+                    10+
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#D1D1D1] font-medium">Services</div>
+                </div>
+                <div className="text-center glass-card-tech p-4 rounded-xl">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
+                    50+
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#D1D1D1] font-medium">Projects</div>
+                </div>
+                <div className="text-center glass-card-tech p-4 rounded-xl">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
+                    100%
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#D1D1D1] font-medium">Satisfaction</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative order-1 lg:order-2">
+              <div className="absolute inset-0 bg-[#3FA9F5]/20 rounded-2xl blur-2xl" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#3FA9F5]/30">
+                <Image
+                  src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop"
+                  alt="Services overview"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Grid */}
-      <Section 
-        title="Our Services" 
-        subtitle="Temukan layanan yang sesuai dengan kebutuhan Anda dan bandingkan paket harga dengan transparan."
+      <Section
+        title="Layanan Kami"
+        subtitle="Pilih layanan yang sesuai dengan kebutuhan bisnis Anda dari berbagai pilihan solusi digital profesional."
         background="dark"
       >
-        <div className="grid-responsive">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </Section>
 
-      {/* Pricing Comparison */}
-      <Section 
-        title="Pricing Comparison" 
-        subtitle="Pilih paket yang sesuai dengan budget dan kebutuhan bisnis Anda"
-        background="dark"
-      >
-        <div className="max-w-6xl mx-auto">
-          <div className="glass-card-tech rounded-lg overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-[#3FA9F5]/20">
-                  <tr>
-                    <th className="px-4 sm:px-6 py-4 text-left text-sm font-medium text-white">Service</th>
-                    <th className="px-4 sm:px-6 py-4 text-left text-sm font-medium text-white">Basic</th>
-                    <th className="px-4 sm:px-6 py-4 text-left text-sm font-medium text-white">Professional</th>
-                    <th className="px-4 sm:px-6 py-4 text-left text-sm font-medium text-white">Enterprise</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#3FA9F5]/20">
-                  <tr>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">Website Design</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">Responsive Design</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">CMS Integration</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">✗</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">E-commerce Features</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">✗</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">✗</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">SEO Optimization</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">✗</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">Maintenance Support</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">1 month</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">3 months</td>
-                    <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">6 months</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Service Illustrations Section */}
-      <Section 
-        title="Visualisasi Layanan Kami" 
-        subtitle="Lihat bagaimana setiap layanan kami bekerja dan memberikan nilai untuk bisnis Anda"
-        background="dark"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-16">
-          {/* Web Design Illustration */}
-          <div className="glass-card-tech rounded-xl p-6 hover:border-[#3FA9F5]/60 transition-all duration-300 group">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Web Design & Development</h3>
-              <p className="text-[#D1D1D1] text-sm">Desain website yang responsif dan modern</p>
-            </div>
-            <div className="flex justify-center mb-4">
-              <WebDesignSVG />
-            </div>
-            <div className="text-center">
-              <Button 
-                asChild 
-                className="tech-button"
-                onClick={() => window.open('https://www.figma.com/design/example', '_blank')}
-              >
-                <a href="https://www.figma.com/design/example" target="_blank" rel="noopener noreferrer">
-                  Lihat Portfolio Design
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          {/* E-commerce Illustration */}
-          <div className="glass-card-tech rounded-xl p-6 hover:border-[#3FA9F5]/60 transition-all duration-300 group">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">E-commerce Solutions</h3>
-              <p className="text-[#D1D1D1] text-sm">Toko online dengan sistem pembayaran terintegrasi</p>
-            </div>
-            <div className="flex justify-center mb-4">
-              <EcommerceSVG />
-            </div>
-            <div className="text-center">
-              <Button 
-                asChild 
-                className="tech-button"
-                onClick={() => window.open('https://shopify.com/partners', '_blank')}
-              >
-                <a href="https://shopify.com/partners" target="_blank" rel="noopener noreferrer">
-                  Lihat E-commerce Demo
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          {/* Mobile App Illustration */}
-          <div className="glass-card-tech rounded-xl p-6 hover:border-[#3FA9F5]/60 transition-all duration-300 group">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Mobile App Development</h3>
-              <p className="text-[#D1D1D1] text-sm">Aplikasi mobile yang user-friendly dan performant</p>
-            </div>
-            <div className="flex justify-center mb-4">
-              <MobileAppSVG />
-            </div>
-            <div className="text-center">
-              <Button 
-                asChild 
-                className="tech-button"
-                onClick={() => window.open('https://expo.dev/example', '_blank')}
-              >
-                <a href="https://expo.dev/example" target="_blank" rel="noopener noreferrer">
-                  Lihat App Demo
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          {/* SEO Illustration */}
-          <div className="glass-card-tech rounded-xl p-6 hover:border-[#3FA9F5]/60 transition-all duration-300 group">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-white mb-2">SEO & Digital Marketing</h3>
-              <p className="text-[#D1D1D1] text-sm">Optimasi website untuk mesin pencari</p>
-            </div>
-            <div className="flex justify-center mb-4">
-              <SeoSVG />
-            </div>
-            <div className="text-center">
-              <Button 
-                asChild 
-                className="tech-button"
-                onClick={() => window.open('https://analytics.google.com', '_blank')}
-              >
-                <a href="https://analytics.google.com" target="_blank" rel="noopener noreferrer">
-                  Lihat SEO Tools
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Section>
-
       {/* Website Templates Section */}
-      <Section 
-        title="Ready-to-Use Templates" 
-        subtitle="Template website siap pakai yang bisa Anda beli dan customize sesuai kebutuhan"
+      <Section
+        title="Template Website Siap Pakai"
+        subtitle="Koleksi template website premium yang siap pakai dengan desain modern dan fitur lengkap untuk berbagai kebutuhan bisnis."
         background="dark"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -335,8 +235,8 @@ export default function ServicesPage() {
                   ))}
                 </div>
                 <div className="flex space-x-2">
-                  <Button 
-                    asChild 
+                  <Button
+                    asChild
                     className="flex-1 tech-button"
                     onClick={() => window.open(`https://orbwebstudio.com/templates/${template.id}`, '_blank')}
                   >
@@ -344,9 +244,9 @@ export default function ServicesPage() {
                       Buy Now
                     </a>
                   </Button>
-                  <Button 
-                    asChild 
-                    variant="outline" 
+                  <Button
+                    asChild
+                    variant="outline"
                     className="border-[#3FA9F5]/30 text-[#3FA9F5] hover:bg-[#3FA9F5]/10"
                     onClick={() => window.open(`https://orbwebstudio.com/preview/${template.id}`, '_blank')}
                   >
@@ -358,6 +258,131 @@ export default function ServicesPage() {
               </div>
             </div>
           ))}
+        </div>
+      </Section>
+
+      {/* Process & Pricing Section */}
+      <Section
+        title="Proses & Harga"
+        subtitle="Pelajari proses kerja kami dan bandingkan paket harga yang sesuai dengan budget Anda."
+        background="dark"
+      >
+        <div className="space-y-12">
+          {/* Process Steps */}
+          <div className="relative">
+            {/* Connecting Line */}
+            <div className="hidden md:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-[#3FA9F5]/30 via-[#3FA9F5]/60 to-[#3FA9F5]/30"></div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
+              <div className="relative text-center glass-card-tech p-8 rounded-2xl hover:border-[#3FA9F5]/60 transition-all duration-300 group">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-[#3FA9F5] rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-sm">1</span>
+                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-[#3FA9F5]/20 to-[#3FA9F5]/10 rounded-xl flex items-center justify-center mx-auto mb-6 mt-4 border border-[#3FA9F5]/30">
+                  <svg className="w-8 h-8 text-[#3FA9F5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#3FA9F5] transition-colors">Konsultasi</h3>
+                <p className="text-[#D1D1D1] text-sm leading-relaxed">Diskusi mendalam tentang kebutuhan dan visi proyek Anda</p>
+              </div>
+
+              <div className="relative text-center glass-card-tech p-8 rounded-2xl hover:border-[#3FA9F5]/60 transition-all duration-300 group">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-[#3FA9F5] rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-sm">2</span>
+                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-[#3FA9F5]/20 to-[#3FA9F5]/10 rounded-xl flex items-center justify-center mx-auto mb-6 mt-4 border border-[#3FA9F5]/30">
+                  <svg className="w-8 h-8 text-[#3FA9F5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#3FA9F5] transition-colors">Perencanaan</h3>
+                <p className="text-[#D1D1D1] text-sm leading-relaxed">Perencanaan strategis dan desain solusi teknis yang tepat</p>
+              </div>
+
+              <div className="relative text-center glass-card-tech p-8 rounded-2xl hover:border-[#3FA9F5]/60 transition-all duration-300 group">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-[#3FA9F5] rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-sm">3</span>
+                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-[#3FA9F5]/20 to-[#3FA9F5]/10 rounded-xl flex items-center justify-center mx-auto mb-6 mt-4 border border-[#3FA9F5]/30">
+                  <svg className="w-8 h-8 text-[#3FA9F5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#3FA9F5] transition-colors">Development</h3>
+                <p className="text-[#D1D1D1] text-sm leading-relaxed">Pengembangan berkualitas dengan testing dan iterasi berkala</p>
+              </div>
+
+              <div className="relative text-center glass-card-tech p-8 rounded-2xl hover:border-[#3FA9F5]/60 transition-all duration-300 group">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-[#3FA9F5] rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-sm">4</span>
+                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-[#3FA9F5]/20 to-[#3FA9F5]/10 rounded-xl flex items-center justify-center mx-auto mb-6 mt-4 border border-[#3FA9F5]/30">
+                  <svg className="w-8 h-8 text-[#3FA9F5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#3FA9F5] transition-colors">Launch</h3>
+                <p className="text-[#D1D1D1] text-sm leading-relaxed">Peluncuran dan dukungan maintenance jangka panjang</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Pricing Comparison */}
+          <div className="max-w-6xl mx-auto">
+            <div className="glass-card-tech rounded-lg overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-[#3FA9F5]/20">
+                    <tr>
+                      <th className="px-4 sm:px-6 py-4 text-left text-sm font-medium text-white">Service</th>
+                      <th className="px-4 sm:px-6 py-4 text-left text-sm font-medium text-white">Basic</th>
+                      <th className="px-4 sm:px-6 py-4 text-left text-sm font-medium text-white">Professional</th>
+                      <th className="px-4 sm:px-6 py-4 text-left text-sm font-medium text-white">Enterprise</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#3FA9F5]/20">
+                    <tr>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">Website Design</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">Responsive Design</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">CMS Integration</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">✗</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">E-commerce Features</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">✗</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">✗</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">SEO Optimization</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">✗</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#D1D1D1]">Maintenance Support</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-gray-500">1 month</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">3 months</td>
+                      <td className="px-4 sm:px-6 py-4 text-sm text-[#3FA9F5]">6 months</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
 
@@ -382,6 +407,24 @@ export default function ServicesPage() {
           </Accordion>
         </div>
       </Section>
+
+      {/* CTA Section */}
+      <section className="section-tech bg-deep-navy relative overflow-hidden">
+        <div className="absolute inset-0 tech-grid-pattern opacity-20" />
+
+        <div className="container-wide relative z-10 text-center">
+          <h2 className="heading-md text-white mb-4">Ready to Start Your Project?</h2>
+          <p className="body-lg text-[#D1D1D1] mb-8 max-w-2xl mx-auto">
+            Mari diskusikan kebutuhan Anda dan dapatkan solusi digital yang tepat untuk bisnis Anda.
+          </p>
+          <Button asChild size="lg" className="tech-button text-lg px-8 py-6">
+            <a href="/contact" className="flex items-center">
+              Get Started
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </Button>
+        </div>
+      </section>
     </div>
   );
 }

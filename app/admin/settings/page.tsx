@@ -8,8 +8,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
-import { siteSettingQueries } from '@/lib/supabase/queries_comprehensive';
-import { SiteSetting } from '@/types/comprehensive';
+import { siteSettingQueries } from '@/lib/supabase/queries';
+import { SiteSetting } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { Save, Settings, Globe, Mail, Phone, Instagram, Linkedin, Github, Eye, EyeOff, Loader2, RefreshCw } from 'lucide-react';
 
@@ -42,7 +42,7 @@ export default function AdminSettingsPage() {
   };
 
   const handleSettingChange = (key: string, value: string) => {
-    setSettings(prev => prev.map(setting => 
+    setSettings(prev => prev.map(setting =>
       setting.key === key ? { ...setting, value } : setting
     ));
   };

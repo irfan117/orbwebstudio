@@ -43,7 +43,7 @@ export function PortfolioCard({ portfolio }: PortfolioCardProps) {
         {portfolio.category && (
           <div className="absolute top-4 left-4">
             <span className="px-3 py-1.5 text-xs font-semibold glass-card-tech text-white rounded-full shadow-lg border border-[#3FA9F5]/30">
-              {portfolio.category}
+              {portfolio.category.name}
             </span>
           </div>
         )}

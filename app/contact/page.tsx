@@ -46,7 +46,18 @@ export default function ContactPage() {
       const composedMessage = selectedService
         ? `Service: ${selectedService}\n\n${formData.message}`
         : formData.message;
-      await messageQueries.create({ ...formData, message: composedMessage });
+      await messageQueries.create({
+        ...formData,
+        message: composedMessage,
+        company: null,
+        subject: selectedService || null,
+        service_interest: selectedService || null,
+        budget_range: null,
+        project_timeline: null,
+        is_responded: false,
+        priority: 'normal' as const,
+        assigned_to: null
+      });
       toast({
         title: "Message Sent!",
         description: "Thank you for your message. We'll get back to you soon.",

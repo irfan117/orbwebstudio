@@ -9,8 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
-import { portfolioQueries, projectTypeQueries, categoryQueries } from '@/lib/supabase/queries_comprehensive';
-import { Portfolio, ProjectType, Category } from '@/types/comprehensive';
+import { portfolioQueries, projectTypeQueries, categoryQueries } from '@/lib/supabase/queries';
+import { Portfolio, ProjectType, Category } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Edit, Trash, Eye, EyeOff, ExternalLink, Github, Loader2, Image as ImageIcon } from 'lucide-react';
 
@@ -349,7 +349,7 @@ export default function AdminPortfolioPage() {
             <div className="p-6">
               <h3 className="text-lg font-semibold text-white mb-2">{portfolio.title}</h3>
               <p className="text-sm text-[#D1D1D1] mb-4 line-clamp-2">{portfolio.description}</p>
-              
+
               <div className="flex flex-wrap gap-2 mb-4">
                 {portfolio.tech_stack?.map((tech, index) => (
                   <Badge key={index} variant="secondary" className="text-xs bg-[#3FA9F5]/20 text-[#3FA9F5] border-[#3FA9F5]/30">
@@ -369,12 +369,12 @@ export default function AdminPortfolioPage() {
                 </div>
                 <div className="flex space-x-1">
                   {portfolio.project_url && (
-                    <Button variant="ghost" size="icon" onClick={() => window.open(portfolio.project_url, '_blank')} className="text-[#3FA9F5] hover:bg-[#3FA9F5]/10">
+                    <Button variant="ghost" size="icon" onClick={() => portfolio.project_url && window.open(portfolio.project_url, '_blank')} className="text-[#3FA9F5] hover:bg-[#3FA9F5]/10">
                       <ExternalLink className="w-4 h-4" />
                     </Button>
                   )}
                   {portfolio.github_url && (
-                    <Button variant="ghost" size="icon" onClick={() => window.open(portfolio.github_url, '_blank')} className="text-[#D1D1D1] hover:bg-[#3FA9F5]/10">
+                    <Button variant="ghost" size="icon" onClick={() => portfolio.github_url && window.open(portfolio.github_url, '_blank')} className="text-[#D1D1D1] hover:bg-[#3FA9F5]/10">
                       <Github className="w-4 h-4" />
                     </Button>
                   )}

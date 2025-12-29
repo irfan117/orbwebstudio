@@ -2,11 +2,11 @@
  * Supabase Database Queries
  *
  * @description Centralized database query functions
- * All CRUD operations for services, portfolios, testimonials, and messages
+ * All CRUD operations for services, portfolios, testimonials, messages, templates, etc.
  *
  * @usage Import specific query functions as needed
  * @example
- * import { getActiveServices, createService } from '@/lib/supabase/queries'
+ * import { serviceQueries, portfolioQueries } from '@/lib/supabase/queries'
  */
 
 import { supabase } from './client';
@@ -17,14 +17,24 @@ import type {
   ContactMessage,
   DashboardStats,
   ProjectType,
+  Category,
+  Template,
+  TemplatePurchase,
+  BlogPost,
+  BlogCategory,
+  SiteSetting,
 } from '@/types';
+
+// =====================================================
+// SERVICES QUERIES
+// =====================================================
 
 export const serviceQueries = {
   async getAll() {
     const { data, error } = await supabase
       .from('services')
       .select('*')
-      .order('created_at', { ascending: false });
+      .order('sort_order', { ascending: true }); // Prefer sort_order
 
     if (error) throw error;
     return data as Service[];
@@ -35,7 +45,7 @@ export const serviceQueries = {
       .from('services')
       .select('*')
       .eq('is_active', true)
-      .order('created_at', { ascending: false });
+      .order('sort_order', { ascending: true });
 
     if (error) throw error;
     return data as Service[];
@@ -81,6 +91,10 @@ export const serviceQueries = {
     if (error) throw error;
   },
 };
+
+// =====================================================
+// PROJECT TYPES QUERIES
+// =====================================================
 
 export const projectTypeQueries = {
   async getAll() {
@@ -145,15 +159,62 @@ export const projectTypeQueries = {
   },
 };
 
+// =====================================================
+// CATEGORIES QUERIES
+// =====================================================
+
+export const categoryQueries = {
+  async getAll() {
+    const { data, error } = await supabase
+      .from('categories')
+      .select('*')
+      .order('sort_order', { ascending: true });
+
+    if (error) throw error;
+    return data as Category[];
+  },
+
+  async getActive() {
+    const { data, error } = await supabase
+      .from('categories')
+      .select('*')
+      .eq('is_active', true)
+      .order('sort_order', { ascending: true });
+
+    if (error) throw error;
+    return data as Category[];
+  },
+
+  async getById(id: string) {
+    const { data, error } = await supabase
+      .from('categories')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (error) throw error;
+    return data as Category | null;
+  },
+  
+  // Minimal implementation for now as full CRUD might not be needed immediately
+  // Add create/update/delete if needed
+};
+
+
+// =====================================================
+// PORTFOLIO QUERIES
+// =====================================================
+
 export const portfolioQueries = {
   async getAll() {
     const { data, error } = await supabase
       .from('portfolios')
       .select(`
         *,
-        project_type:project_types(*)
+        project_type:project_types(*),
+        category:categories(*)
       `)
-      .order('created_at', { ascending: false });
+      .order('sort_order', { ascending: true });
 
     if (error) throw error;
     return data as Portfolio[];
@@ -167,22 +228,22 @@ export const portfolioQueries = {
         project_type:project_types(*)
       `)
       .eq('is_featured', true)
-      .order('created_at', { ascending: false })
+      .order('sort_order', { ascending: true })
       .limit(6);
 
     if (error) throw error;
     return data as Portfolio[];
   },
 
-  async getByCategory(category: string) {
+  async getByCategory(categoryId: string) {
     const { data, error } = await supabase
       .from('portfolios')
       .select(`
         *,
         project_type:project_types(*)
       `)
-      .eq('category', category)
-      .order('created_at', { ascending: false });
+      .eq('category_id', categoryId)
+      .order('sort_order', { ascending: true });
 
     if (error) throw error;
     return data as Portfolio[];
@@ -196,7 +257,7 @@ export const portfolioQueries = {
         project_type:project_types(*)
       `)
       .eq('project_type_id', projectTypeId)
-      .order('created_at', { ascending: false });
+      .order('sort_order', { ascending: true });
 
     if (error) throw error;
     return data as Portfolio[];
@@ -242,6 +303,10 @@ export const portfolioQueries = {
     if (error) throw error;
   },
 };
+
+// =====================================================
+// TESTIMONIALS QUERIES
+// =====================================================
 
 export const testimonialQueries = {
   async getAll() {
@@ -306,7 +371,11 @@ export const testimonialQueries = {
   },
 };
 
-export const messageQueries = {
+// =====================================================
+// CONTACT MESSAGES QUERIES
+// =====================================================
+
+export const contactMessageQueries = {
   async getAll() {
     const { data, error } = await supabase
       .from('contact_messages')
@@ -339,7 +408,7 @@ export const messageQueries = {
     return data as ContactMessage | null;
   },
 
-  async create(message: Omit<ContactMessage, 'id' | 'created_at' | 'is_read'>) {
+  async create(message: Omit<ContactMessage, 'id' | 'created_at' | 'updated_at' | 'is_read'>) {
     const { data, error } = await supabase
       .from('contact_messages')
       .insert([{ ...message, is_read: false }])
@@ -361,6 +430,18 @@ export const messageQueries = {
     if (error) throw error;
     return data as ContactMessage;
   },
+  
+  async update(id: string, updates: Partial<ContactMessage>) {
+      const { data, error } = await supabase
+        .from('contact_messages')
+        .update(updates)
+        .eq('id', id)
+        .select()
+        .single();
+  
+      if (error) throw error;
+      return data as ContactMessage;
+  },
 
   async delete(id: string) {
     const { error } = await supabase
@@ -372,6 +453,51 @@ export const messageQueries = {
   },
 };
 
+// =====================================================
+// TEMPLATES QUERIES
+// =====================================================
+
+export const templateQueries = {
+  async getAll() {
+    const { data, error } = await supabase
+      .from('templates')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return data as Template[];
+  },
+
+  async getFeatured() {
+    const { data, error } = await supabase
+      .from('templates')
+      .select('*')
+      .eq('is_active', true)
+      .eq('is_featured', true)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return data as Template[];
+  },
+
+  async getById(id: string) {
+    const { data, error } = await supabase
+      .from('templates')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (error) throw error;
+    return data as Template | null;
+  },
+  
+  // Add other methods as needed
+};
+
+// =====================================================
+// DASHBOARD STATS
+// =====================================================
+
 export const dashboardQueries = {
   async getStats(): Promise<DashboardStats> {
     const [services, portfolios, testimonials, unreadMessages] = await Promise.all([
@@ -381,7 +507,6 @@ export const dashboardQueries = {
       supabase
         .from('contact_messages')
         .select('id', { count: 'exact', head: true })
-        .eq('is_read', false),
     ]);
 
     return {
@@ -392,3 +517,56 @@ export const dashboardQueries = {
     };
   },
 };
+
+// =====================================================
+// SITE SETTINGS QUERIES
+// =====================================================
+
+export const siteSettingQueries = {
+  async getAll() {
+    const { data, error } = await supabase
+      .from('site_settings')
+      .select('*')
+      .order('category', { ascending: true })
+      .order('key', { ascending: true });
+
+    if (error) throw error;
+    return data as SiteSetting[];
+  },
+
+  async getPublic() {
+    const { data, error } = await supabase
+      .from('site_settings')
+      .select('*')
+      .eq('is_public', true);
+
+    if (error) throw error;
+    return data as SiteSetting[];
+  },
+
+  async getByKey(key: string) {
+    const { data, error } = await supabase
+      .from('site_settings')
+      .select('*')
+      .eq('key', key)
+      .maybeSingle();
+
+    if (error) throw error;
+    return data as SiteSetting | null;
+  },
+
+  async update(id: string, updates: Partial<SiteSetting>) {
+    const { data, error } = await supabase
+      .from('site_settings')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data as SiteSetting;
+  },
+};
+
+// Export alias for backward compatibility
+export const messageQueries = contactMessageQueries;

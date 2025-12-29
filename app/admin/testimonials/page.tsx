@@ -9,8 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
-import { testimonialQueries, portfolioQueries } from '@/lib/supabase/queries_comprehensive';
-import { Testimonial, Portfolio } from '@/types/comprehensive';
+import { testimonialQueries, portfolioQueries } from '@/lib/supabase/queries';
+import { Testimonial, Portfolio } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Edit, Trash, Star, Check, X, Loader2, User } from 'lucide-react';
 
@@ -130,9 +130,8 @@ export default function AdminTestimonialsPage() {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`w-4 h-4 ${
-          i < rating ? 'text-yellow-400 fill-current' : 'text-gray-400'
-        }`}
+        className={`w-4 h-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-400'
+          }`}
       />
     ));
   };
@@ -223,7 +222,7 @@ export default function AdminTestimonialsPage() {
                   id="rating"
                   value={currentTestimonial?.rating || 5}
                   onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, rating: parseInt(e.target.value) })}
-                    className="w-full px-3 py-2 bg-[#2A2A2E] border border-[#3FA9F5]/50 rounded-md text-white focus:border-[#3FA9F5] focus:ring-[#3FA9F5]/30"
+                  className="w-full px-3 py-2 bg-[#2A2A2E] border border-[#3FA9F5]/50 rounded-md text-white focus:border-[#3FA9F5] focus:ring-[#3FA9F5]/30"
                 >
                   <option value={1}>1 Star</option>
                   <option value={2}>2 Stars</option>
@@ -251,7 +250,7 @@ export default function AdminTestimonialsPage() {
                   id="project_id"
                   value={currentTestimonial?.project_id || ''}
                   onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, project_id: e.target.value || null })}
-                    className="w-full px-3 py-2 bg-[#2A2A2E] border border-[#3FA9F5]/50 rounded-md text-white focus:border-[#3FA9F5] focus:ring-[#3FA9F5]/30"
+                  className="w-full px-3 py-2 bg-[#2A2A2E] border border-[#3FA9F5]/50 rounded-md text-white focus:border-[#3FA9F5] focus:ring-[#3FA9F5]/30"
                 >
                   <option value="">Select Project (Optional)</option>
                   {portfolios.map((portfolio) => (
